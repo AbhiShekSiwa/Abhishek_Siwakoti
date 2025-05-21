@@ -2,7 +2,7 @@
 layout: post
 title: My Email! 
 subtitle: You can send me a message!  
-tags: [Projects, test]
+tags: [contact]
 ---
 
 <style>
