@@ -1,0 +1,59 @@
+<style>
+.carousel {
+  position: relative;
+  max-width: 700px;
+  margin: auto;
+  margin-top: 1em;
+}
+.carousel-images {
+  position: relative;
+  overflow: hidden;
+}
+.carousel-image {
+  display: none;
+  width: 100%;
+  border-radius: 10px;
+}
+.carousel-image.active {
+  display: block;
+}
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+  padding: 0 12px;
+  z-index: 1;
+}
+.carousel-btn.prev { left: 0; }
+.carousel-btn.next { right: 0; }
+</style>
+
+<script>
+let slideIndices = [1, 1, 1]; // One per carousel
+
+function plusSlides(n, carouselIndex) {
+  showSlides(slideIndices[carouselIndex] += n, carouselIndex);
+}
+
+function showSlides(n, carouselIndex) {
+  const carousels = document.querySelectorAll('.carousel');
+  const images = carousels[carouselIndex].querySelectorAll('.carousel-image');
+
+  if (n > images.length) slideIndices[carouselIndex] = 1;
+  if (n < 1) slideIndices[carouselIndex] = images.length;
+
+  images.forEach(img => img.classList.remove('active'));
+  images[slideIndices[carouselIndex] - 1].classList.add('active');
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  for (let i = 0; i < slideIndices.length; i++) {
+    showSlides(slideIndices[i], i);
+  }
+});
+</script>
