@@ -2,7 +2,7 @@
 layout: post
 title: Bottle Rocket Project
 subtitle: Spring Semester Madness
-cover-img: /assets/img/GroupPhotoFit.jpg
+cover-img: /assets/img/LastAttempedPhoto.jpg
 thumbnail-img: /assets/img/CoverImage.png
 share-img: /assets/img/path.jpg
 tags: [Projects, test]
