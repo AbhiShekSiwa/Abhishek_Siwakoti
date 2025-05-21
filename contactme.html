@@ -1,0 +1,40 @@
+---
+layout: page
+title: My Email! 
+subtitle: You can send me a message!  
+---
+
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <h2>Contact Me</h2>
+  <p>All messages go straight to my personal inbox :-)</p>
+
+  <form id="contact-form">
+    <input type="text" name="from_name" placeholder="Your Name" required><br>
+    <input type="email" name="from_email" placeholder="Your Email" required><br>
+    <textarea name="message" placeholder="Message" rows="6" required></textarea><br>
+    <button type="submit">Send</button>
+    <p id="form-message" style="margin-top: 1em;"></p>
+  </form>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("b5-XGMt4O8JUIysE6"); // Your public key
+  })();
+
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm('service_6kbeb25', 'template_svzw5r5', this)
+      .then(function() {
+        document.getElementById("form-message").innerText = "Your message has been sent. Thank you!";
+        document.getElementById("contact-form").reset();
+      }, function(error) {
+        document.getElementById("form-message").innerText = "Something went wrong. Please try again.";
+        console.error(error);
+      });
+  });
+</script>
