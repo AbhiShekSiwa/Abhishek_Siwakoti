@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Bottle Rocket Project
+title: Projects! 
 subtitle: Spring Semester Madness
 cover-img: /assets/img/LastAttempedPhoto.jpg
 thumbnail-img: /assets/img/CoverImage.png
