@@ -2,7 +2,7 @@
 layout: post
 title: Bottle Rocket Project
 subtitle: Excerpt from Soulshaping by Jeff Brown
-cover-img: /assets/img/path.jpg
+cover-img: /assets/img/GroupPhoto.jpg
 thumbnail-img: /assets/img/CoverImage.png
 share-img: /assets/img/path.jpg
 tags: [Projects, test]
