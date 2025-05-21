@@ -22,7 +22,7 @@ author: Abhishek Siwakoti
 navbar-links:
   About Me: "aboutme"
   Resources:
-    - Resume: "contactme"
+    - Resume: "resume"
     #- Learn markdown: "https://www.markdowntutorial.com/"
   Contact me: "contactme"
 
