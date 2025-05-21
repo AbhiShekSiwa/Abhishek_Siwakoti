@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Bottle Rocket Project
-subtitle: Excerpt from Soulshaping by Jeff Brown
+subtitle: Spring Semester Madness
 cover-img: /assets/img/GroupPhoto.jpg
 thumbnail-img: /assets/img/CoverImage.png
 share-img: /assets/img/path.jpg
