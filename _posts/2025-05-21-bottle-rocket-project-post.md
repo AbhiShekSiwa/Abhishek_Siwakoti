@@ -5,7 +5,7 @@ subtitle: Spring Semester Madness
 cover-img: /assets/img/LastAttempedPhoto.jpg
 thumbnail-img: /assets/img/CoverImage.png
 share-img: /assets/img/path.jpg
-tags: [Projects, test]
+tags: [Projects]
 author: Abhishek Siwakoti
 ---
 
