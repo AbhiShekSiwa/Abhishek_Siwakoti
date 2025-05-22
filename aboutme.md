@@ -2,7 +2,7 @@
 layout: page
 title: About Me
 subtitle: Why you'd want to go on a date with me?
-permalink: /about/
+permalink: /aboutme/
 ---
 
 <h2 style="text-align: center; margin-top: 1em;">👋 Who Am I?</h2>
