@@ -29,6 +29,22 @@ permalink: /resume/
   margin: auto;
   max-width: 100%;
 }
+.resume-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.resume-nav button {
+  padding: 8px 16px;
+  font-size: 1em;
+  border: none;
+  background-color: #444;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
 </style>
 
 <h2 style="text-align:center;">My Resume</h2>
@@ -39,6 +55,12 @@ permalink: /resume/
   <button onclick="loadResume('full')">View Full Resume</button>
 </div>
 
+<div class="resume-nav" id="nav-buttons" style="display: none;">
+  <button onclick="prevPage()">⬅ Prev</button>
+  <span>Page <span id="page-num">1</span> of <span id="page-count">?</span></span>
+  <button onclick="nextPage()">Next ➡</button>
+</div>
+
 <div style="display: flex; justify-content: center; margin-bottom: 2em;">
   <canvas id="resume-canvas"></canvas>
 </div>
@@ -47,10 +69,12 @@ permalink: /resume/
 <script>
   const canvas = document.getElementById('resume-canvas');
   const ctx = canvas.getContext('2d');
-  let resumeDoc = null;
+  let pdfDoc = null;
   let currentPage = 1;
   let rendering = false;
   let pendingPage = null;
+  let totalPages = 1;
+  let currentType = 'short'; // 'short' or 'full'
 
   const scale = 1.5;
   const resumePaths = {
@@ -62,15 +86,12 @@ permalink: /resume/
 
   function renderPage(num) {
     rendering = true;
-    resumeDoc.getPage(num).then(page => {
+    pdfDoc.getPage(num).then(page => {
       const viewport = page.getViewport({ scale });
       canvas.height = viewport.height;
       canvas.width = viewport.width;
 
-      const renderContext = {
-        canvasContext: ctx,
-        viewport: viewport
-      };
+      const renderContext = { canvasContext: ctx, viewport: viewport };
       page.render(renderContext).promise.then(() => {
         rendering = false;
         if (pendingPage !== null) {
@@ -78,19 +99,51 @@ permalink: /resume/
           pendingPage = null;
         }
       });
+
+      document.getElementById('page-num').textContent = num;
     });
+  }
+
+  function queueRenderPage(num) {
+    if (rendering) {
+      pendingPage = num;
+    } else {
+      renderPage(num);
+    }
+  }
+
+  function prevPage() {
+    if (currentPage <= 1) return;
+    currentPage--;
+    queueRenderPage(currentPage);
+  }
+
+  function nextPage() {
+    if (currentPage >= totalPages) return;
+    currentPage++;
+    queueRenderPage(currentPage);
   }
 
   function loadResume(type) {
-    const url = resumePaths[type];
-    pdfjsLib.getDocument(url).promise.then(pdf => {
-      resumeDoc = pdf;
-      currentPage = 1;
+    currentType = type;
+    currentPage = 1;
+
+    pdfjsLib.getDocument(resumePaths[type]).promise.then(pdf => {
+      pdfDoc = pdf;
+      totalPages = pdf.numPages;
       renderPage(currentPage);
+
+      const nav = document.getElementById('nav-buttons');
+      if (type === 'full' && totalPages > 1) {
+        nav.style.display = 'flex';
+        document.getElementById('page-count').textContent = totalPages;
+      } else {
+        nav.style.display = 'none';
+      }
     });
   }
 
-  // Auto-load shortened resume on first load
+  // Auto-load shortened resume on page load
   document.addEventListener("DOMContentLoaded", () => {
     loadResume('short');
   });
