@@ -1,29 +1,87 @@
 ---
 layout: page
 title: About Me
-subtitle: Why you'd want to go on a date with me?
-permalink: /aboutme/
+subtitle: The Aerospace Dreamer Who Builds, Breaks, and Rebuilds
+permalink: /about/
 ---
 
-<h2 style="text-align: center; margin-top: 1em;">👋 Who Am I?</h2>
+{: .box-success}
+Hey there — welcome to my digital corner of the universe. This page is where you get to learn a bit more about *who I am*, *what I care about*, and *why aerospace isn't just my major — it's my mission*.
 
-<p style="max-width: 800px; margin: auto; font-size: 1.05em; line-height: 1.6;">
-  My name is <strong>Abhishek Siwakoti</strong>, and I’m currently pursuing Aerospace Engineering — because, well, someone has to build the future of spaceflight, right?
-</p>
+---
 
-<p style="max-width: 800px; margin: auto; font-size: 1.05em; line-height: 1.6;">
-  Here are a few things that define me:
-</p>
+## 👨‍🚀 Who Am I?
 
-<ul style="max-width: 800px; margin: auto; font-size: 1.05em; line-height: 1.8;">
-  <li>✨ I love stargazing and the cosmos — it’s what pulled me into Aerospace Engineering in the first place.</li>
-  <li>🛡️ I'm fiercely loyal to my family and friends. Loyalty matters more than thrust-to-weight ratios (barely).</li>
-  <li>📐 I can model a glide path, write a controller, or debug code... and still be on time for dinner.</li>
-</ul>
+Hi! I’m **Abhishek Siwakoti**, a student of Aerospace Engineering with a passion for turning the impossible into equations, CAD files, and flying prototypes.
 
-<h3 style="text-align: center; margin-top: 2em;">🎬 My Story</h3>
+**Quick intro snapshot**:  
+- 🛰️ School: `{{ your university name }}`
+- 🚀 Focus areas: `{{ your interests (e.g., orbital dynamics, controls, UAVs) }}`
+- 🧠 I geek out about: `{{ aerospace concepts, hobbies, tech stuff }}`
+- 🔧 Tools I love: `{{ MATLAB, SolidWorks, Python, etc. }}`
 
-<p style="max-width: 800px; margin: auto; font-size: 1.05em; line-height: 1.6;">
-  Honestly, I could try to summarize it here — but why not let cinema do the talking? If you really want to understand me, you should probably just watch 
-  <a href="https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29" target="_blank"><strong>my movie</strong></a>. It answers <em>everything</em>.
-</p>
+---
+
+## ✈️ Why Aerospace?
+
+{: .box-warning}
+Everyone’s got a spark. Mine? Watching rockets lift off and realizing *someone* built that — someone like me, one day.
+
+I fell in love with flight, space, and engineering the moment I realized that physics + creativity = aerospace.
+
+Add your story here:  
+`{{ What inspired you to go into aerospace? A teacher? A movie? A project? }}`
+
+---
+
+## 🧠 My Engineering Philosophy
+
+> "*Test it. Break it. Learn from it. Rebuild better.*" — me, after many late nights.
+
+I believe in:
+- Simplicity that scales
+- Documentation that lives
+- Code that doesn’t bite back
+
+List a few personal engineering rules or philosophies here if you'd like!
+
+---
+
+## 📚 Fun Engineering Stats
+
+| Project | Tools Used | Coolest Outcome |
+|--------|------------|------------------|
+| `{{ Project name }}` | `{{ MATLAB, Arduino }}` | `{{ Real result (e.g., "tracked a rocket arc!") }}` |
+| `{{ Another one }}` | `{{ Python, SolidWorks }}` | `{{ "Printed my first working airfoil" }}` |
+| `{{ One more? }}` | `{{ Simulink, sensors }}` | `{{ "Reduced overshoot to under 5%" }}` |
+
+---
+
+## 🎬 If My Life Were a Movie...
+
+It would be **[The Princess Bride](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29)**: a mix of wonder, wit, and sword fights (okay maybe not the last one... yet).
+
+You can replace this with your favorite movie or fun metaphor for your life/journey.
+
+---
+
+## 😻 Meet My Cat
+
+> Life’s better with an aerospace assistant who sheds on your schematics.
+
+**Name:** `{{ your cat's name }}`  
+**Specialty:** Napping through lectures and walking across my keyboard mid-CAD.  
+![Cat](https://placekitten.com/600/400)  
+*Yes, you can replace that image link with your own.*
+
+---
+
+## 📬 Let’s Connect
+
+Got a project, a question, or just want to talk rockets and ramen?  
+Reach out via [GitHub](https://github.com/{{ your username }}) or [LinkedIn](https://linkedin.com/in/{{ your handle }}).
+
+---
+
+{: .box-note}
+*Pro tip:* If you made it this far — we should totally be working on a mission together someday.
