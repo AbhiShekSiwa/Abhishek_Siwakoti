@@ -23,7 +23,7 @@ navbar-links:
   About Me: "aboutme"
   Resources:
     - Resume: "resume"
-    - Tools and Skills: "TandS"
+   # - Tools and Skills: "TandS"
   Contact me: "contactme"
 
 ################
