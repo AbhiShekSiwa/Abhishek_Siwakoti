@@ -23,27 +23,40 @@ permalink: /resume/
 .resume-buttons button:hover {
   background-color: #005fa3;
 }
+.resume-container {
+  position: relative;
+  max-width: 850px;
+  margin: auto;
+}
 #resume-canvas {
   border: 1px solid #ccc;
   display: block;
-  margin: auto;
   max-width: 100%;
+  height: auto;
+  margin: auto;
 }
-.resume-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-.resume-nav button {
-  padding: 8px 16px;
-  font-size: 1em;
+.side-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
   border: none;
-  background-color: #444;
   color: white;
-  border-radius: 5px;
+  font-size: 1.5rem;
+  padding: 10px 15px;
   cursor: pointer;
+  z-index: 2;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+.side-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.side-btn.left {
+  left: 0;
+}
+.side-btn.right {
+  right: 0;
 }
 </style>
 
@@ -55,14 +68,10 @@ permalink: /resume/
   <button onclick="loadResume('full')">View Full Resume</button>
 </div>
 
-<div class="resume-nav" id="nav-buttons" style="display: none;">
-  <button onclick="prevPage()">⬅ Prev</button>
-  <span>Page <span id="page-num">1</span> of <span id="page-count">?</span></span>
-  <button onclick="nextPage()">Next ➡</button>
-</div>
-
-<div style="display: flex; justify-content: center; margin-bottom: 2em;">
+<div class="resume-container" id="resume-wrapper">
+  <button class="side-btn left" id="prev-btn" onclick="prevPage()" style="display: none;">&#10094;</button>
   <canvas id="resume-canvas"></canvas>
+  <button class="side-btn right" id="next-btn" onclick="nextPage()" style="display: none;">&#10095;</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
@@ -71,16 +80,19 @@ permalink: /resume/
   const ctx = canvas.getContext('2d');
   let pdfDoc = null;
   let currentPage = 1;
+  let totalPages = 1;
   let rendering = false;
   let pendingPage = null;
-  let totalPages = 1;
-  let currentType = 'short'; // 'short' or 'full'
+  let currentType = 'short';
 
   const scale = 1.5;
   const resumePaths = {
     short: '/assets/pdfs/Abhishek_Siwakoti_Resume_Short.pdf',
     full: '/assets/pdfs/Abhishek_Siwakoti_Resume_Full.pdf'
   };
+
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
 
@@ -100,7 +112,11 @@ permalink: /resume/
         }
       });
 
-      document.getElementById('page-num').textContent = num;
+      // Update visibility of nav buttons
+      if (currentType === 'full') {
+        prevBtn.style.display = num > 1 ? 'block' : 'none';
+        nextBtn.style.display = num < totalPages ? 'block' : 'none';
+      }
     });
   }
 
@@ -133,17 +149,18 @@ permalink: /resume/
       totalPages = pdf.numPages;
       renderPage(currentPage);
 
-      const nav = document.getElementById('nav-buttons');
+      // Show arrows only for full resume
       if (type === 'full' && totalPages > 1) {
-        nav.style.display = 'flex';
-        document.getElementById('page-count').textContent = totalPages;
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'block';
       } else {
-        nav.style.display = 'none';
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
       }
     });
   }
 
-  // Auto-load shortened resume on page load
+  // Load shortened resume by default
   document.addEventListener("DOMContentLoaded", () => {
     loadResume('short');
   });
