@@ -15,10 +15,17 @@ Hey there — welcome to my digital corner of the universe. This page is where y
 Hi! I’m **Abhishek Siwakoti**, a student of Aerospace Engineering with a passion for turning the impossible into equations, CAD files, and flying prototypes.
 
 **Quick intro snapshot**:  
-- 🛰️ School: `{{ your university name }}`
-- 🚀 Focus areas: `{{ your interests (e.g., orbital dynamics, controls, UAVs) }}`
-- 🧠 I geek out about: `{{ aerospace concepts, hobbies, tech stuff }}`
-- 🔧 Tools I love: `{{ MATLAB, SolidWorks, Python, etc. }}`
+🛰️ School: University of Colorado Boulder  
+🚀 Focus areas: Orbital Dynamics, Aircraft Stability, Aerodynamics, and Thermodynamics  
+🧠 I geek out about:  
+- The Kármán line (yes, it *is* arbitrary but still cool)  
+- Supersonic shockwaves and Prandtl–Meyer expansions  
+- Lagrange points and how they create "gravitational parking spots"  
+- Thrust vector control in rockets  
+- The elegance of the Breguet range equation  
+- Turbulence... even if no one fully understands it  
+🔧 Tools I love:  
+MATLAB, Python, Simulink, SolidWorks, Fusion 360, ANSYS Fluent, XFLR5, Git, Arduino, LaTeX
 
 ---
 
@@ -29,8 +36,19 @@ Everyone’s got a spark. Mine? Watching rockets lift off and realizing *someone
 
 I fell in love with flight, space, and engineering the moment I realized that physics + creativity = aerospace.
 
-Add your story here:  
-`{{ What inspired you to go into aerospace? A teacher? A movie? A project? }}`
+I was born in Nepal — not in a hospital, but with heart and grit already installed.  
+Coming to the U.S. young, I didn’t arrive with much. But what I *did* bring was the belief that struggle can shape precision, and that dreams don’t have to start polished to end up soaring.
+
+Engineering didn’t just speak to me — it **challenged** me. And I’ve been answering back ever since.
+
+What started as helping my mom, fixing things around the house, and launching makeshift gadgets, turned into launching actual rockets in class and modeling flight paths in MATLAB. I realized that engineering isn't just about solving equations — it's about solving life, one problem at a time.
+
+I’ve built trebuchets that can launch beanbags 50 feet, CAD models that print to spec, and I’m on my way to building a life that can lift others too.
+
+> If it has my name on it, I want it done right — whether it’s a flight sim, a design file, or the code behind this website. I can’t promise perfection, but I can promise I’ll give it everything I’ve got.
+
+Every class, every late night, every build that fails forward — it all comes back to this:  
+**Make something better than what you were handed.**
 
 ---
 
@@ -43,17 +61,16 @@ I believe in:
 - Documentation that lives
 - Code that doesn’t bite back
 
-List a few personal engineering rules or philosophies here if you'd like!
-
 ---
-
 ## 📚 Fun Engineering Stats
 
 | Project | Tools Used | Coolest Outcome |
 |--------|------------|------------------|
-| `{{ Project name }}` | `{{ MATLAB, Arduino }}` | `{{ Real result (e.g., "tracked a rocket arc!") }}` |
-| `{{ Another one }}` | `{{ Python, SolidWorks }}` | `{{ "Printed my first working airfoil" }}` |
-| `{{ One more? }}` | `{{ Simulink, sensors }}` | `{{ "Reduced overshoot to under 5%" }}` |
+| Boost-Glide Vehicle Modeling (ASEN 2804 Lab 1) | MATLAB, SolidWorks, PDF.js | Modeled full launch-to-glide flight and made an interactive CAD animation |
+| VR Roller Coaster G-Force Simulator (ASEN 2803 Lab 1) | MATLAB, G-force math, plotting | Built a coaster sim that modeled safe human acceleration |
+| Locomotive Crank Motion (ASEN 2803 Lab 2) | MATLAB, sensors, data analysis | Validated kinematics with real-world encoder + potentiometer data |
+| Rotary Arm PD Control (ASEN 2803 Lab 3) | MATLAB, Simulink, strain gauges | Tuned a PD controller and modeled 2-DOF dynamics with feedback |
+
 
 ---
 
@@ -69,19 +86,22 @@ You can replace this with your favorite movie or fun metaphor for your life/jour
 
 > Life’s better with an aerospace assistant who sheds on your schematics.
 
-**Name:** `{{ your cat's name }}`  
+**Name:** `{{ Garmadon Buny Kaliflower}}`  
 **Specialty:** Napping through lectures and walking across my keyboard mid-CAD.  
-![Cat](https://placekitten.com/600/400)  
+![My Cat](/assets/img/crepe.png)
 *Yes, you can replace that image link with your own.*
 
 ---
 
 ## 📬 Let’s Connect
 
-Got a project, a question, or just want to talk rockets and ramen?  
-Reach out via [GitHub](https://github.com/{{ your username }}) or [LinkedIn](https://linkedin.com/in/{{ your handle }}).
+Got a project, a question, or just want to talk rockets and ramen?
+- 🧑‍💻 [GitHub](https://github.com/your-username)
+- 💼 [LinkedIn](https://linkedin.com/in/your-handle)
+- 📩 [Contact Me](/contactme/) — I actually read my messages 🙂
+
 
 ---
 
 {: .box-note}
-*Pro tip:* If you made it this far — we should totally be working on a mission together someday.
+*Pro tip:* If you made it this far, we should totally be working on a mission together someday.
