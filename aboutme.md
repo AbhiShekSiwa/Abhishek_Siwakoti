@@ -2,7 +2,7 @@
 layout: page
 title: About Me
 subtitle: The Aerospace Dreamer Who Builds, Breaks, and Rebuilds
-permalink: /about/
+permalink: /aboutme/
 ---
 
 {: .box-success}
