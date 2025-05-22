@@ -23,7 +23,7 @@ navbar-links:
   About Me: "aboutme"
   Resources:
     - Resume: "resume"
-    #- Learn markdown: "https://www.markdowntutorial.com/"
+    - Tools and Skills: "tools-and-skills"
   Contact me: "contactme"
 
 ################
