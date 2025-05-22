@@ -18,6 +18,7 @@ Hi! I’m **Abhishek Siwakoti**, a student of Aerospace Engineering with a passi
 🛰️ School: University of Colorado Boulder  
 🚀 Focus areas: Orbital Dynamics, Aircraft Stability, Aerodynamics, and Thermodynamics  
 🔧 Tools I love: MATLAB, Python, Simulink, SolidWorks, Git, LaTeX
+
 🧠 I geek out about:  
 - The Kármán line (yes, it *is* arbitrary but still cool)  
 - Supersonic shockwaves and Prandtl–Meyer expansions  
