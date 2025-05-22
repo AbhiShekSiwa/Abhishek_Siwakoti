@@ -17,15 +17,14 @@ Hi! I’m **Abhishek Siwakoti**, a student of Aerospace Engineering with a passi
 **Quick intro snapshot**:  
 🛰️ School: University of Colorado Boulder  
 🚀 Focus areas: Orbital Dynamics, Aircraft Stability, Aerodynamics, and Thermodynamics  
+🔧 Tools I love: MATLAB, Python, Simulink, SolidWorks, Git, LaTeX
 🧠 I geek out about:  
 - The Kármán line (yes, it *is* arbitrary but still cool)  
 - Supersonic shockwaves and Prandtl–Meyer expansions  
 - Lagrange points and how they create "gravitational parking spots"  
 - Thrust vector control in rockets  
 - The elegance of the Breguet range equation  
-- Turbulence... even if no one fully understands it  
-🔧 Tools I love:  
-MATLAB, Python, Simulink, SolidWorks, Fusion 360, ANSYS Fluent, XFLR5, Git, Arduino, LaTeX
+- Turbulence... even if no one fully understands it
 
 ---
 
@@ -88,7 +87,7 @@ You can replace this with your favorite movie or fun metaphor for your life/jour
 
 **Name:** `{{ Garmadon Buny Kaliflower}}`  
 **Specialty:** Napping through lectures and walking across my keyboard mid-CAD.  
-![My Cat](/assets/img/crepe.png)
+![My Cat](/assets/img/crepe.jpg)
 *Yes, you can replace that image link with your own.*
 
 ---
@@ -96,8 +95,8 @@ You can replace this with your favorite movie or fun metaphor for your life/jour
 ## 📬 Let’s Connect
 
 Got a project, a question, or just want to talk rockets and ramen?
-- 🧑‍💻 [GitHub](https://github.com/your-username)
-- 💼 [LinkedIn](https://linkedin.com/in/your-handle)
+- 🧑‍💻 [GitHub](https://github.com/{{ your username }})
+- 💼 [LinkedIn](https://linkedin.com/in/{{ your handle }})
 - 📩 [Contact Me](/contactme/) — I actually read my messages 🙂
 
 
