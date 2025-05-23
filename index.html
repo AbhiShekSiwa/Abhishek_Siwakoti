@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Welcome
+show-avatar: false
 ---
 
 <!DOCTYPE html>
@@ -53,8 +54,8 @@ title: Welcome
     #hero-photo {
       position: fixed;
       top: 40px;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 100%;
+      transform: translateX(-100%);
       z-index: 1000;
       width: 240px;
       height: 240px;
@@ -87,7 +88,7 @@ title: Welcome
     <img id="hero-photo" src="{{ site.avatar }}" alt="Abhishek Siwakoti" />
   </section>
 
-  <!-- JS to Shrink in Place -->
+  <!-- JS to shrink and move image to center -->
   <script>
     const heroImg = document.getElementById('hero-photo');
     const maxScroll = 200;
@@ -96,11 +97,13 @@ title: Welcome
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
-      const scale = Math.max(endSize / startSize, 1 - (scrollY / maxScroll));
-      const size = startSize * scale;
+      const scrollRatio = Math.min(1, scrollY / maxScroll);
+      const size = startSize - (startSize - endSize) * scrollRatio;
 
       heroImg.style.width = `${size}px`;
       heroImg.style.height = `${size}px`;
+      heroImg.style.left = `${100 - 50 * scrollRatio}%`;
+      heroImg.style.transform = `translateX(-${100 - 50 * scrollRatio}%)`;
     });
   </script>
 </body>
