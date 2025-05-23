@@ -66,23 +66,36 @@ show-avatar: true
       opacity: 0.8;
     }
 
-    #hero-photo {
+    #hero-photo, #hero-logo {
       position: fixed;
       top: 50%;
-      left: 85%;
       transform: translate(-50%, -50%);
-      z-index: 1000;
       width: 15.625rem;
       height: 15.625rem;
       border-radius: 50%;
+      object-fit: cover;
       transition: all 0.3s ease;
     }
 
+    #hero-photo {
+      left: 85%;
+      z-index: 1000;
+    }
+
+    #hero-logo {
+      left: 15%;
+      z-index: 999;
+    }
+
+    .fade-out {
+      opacity: 0;
+      transform: scale(0.85) translate(-50%, -50%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+
     @media (max-width: 768px) {
-      #hero-photo {
-        position: static;
-        transform: none;
-        margin: 2em auto 0 auto;
+      #hero-photo, #hero-logo {
         display: none;
       }
     }
@@ -102,50 +115,57 @@ show-avatar: true
       <a href="/contactme/" class="btn">✉️ Contact Me</a>
     </div>
     <div class="scroll-hint">↓ scroll to explore</div>
-    <img id="hero-photo" src="{{ site.avatar }}" alt="Abhishek Siwakoti" />
+    <img id="hero-photo" src="{{ site.avatar }}" alt="Abhishek Avatar" />
+    <img id="hero-logo" src="/assets/img/Logo.png" alt="Abhishek Logo" />
   </section>
 
-  <!-- Extra scroll space -->
-  <div style="height: 125vh;"></div>
+  <div style="height: 200vh;"></div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const heroImg = document.getElementById('hero-photo');
+      const logoImg = document.getElementById('hero-logo');
 
       const baseFontSize = 16;
-      const startSizeRem = 15.625; // 3.125 * 5
+      const startSizeRem = 15.625;
       const endSizeRem = 3.125;
-      const maxScrollRem = 15.625;
-      const maxScroll = maxScrollRem * baseFontSize;
+      const maxScroll = 15.625 * baseFontSize;
 
       function updatePosition() {
         const scrollY = window.scrollY;
         const scrollRatio = Math.min(1, scrollY / maxScroll);
+        const sizePx = (startSizeRem - ((startSizeRem - endSizeRem) * scrollRatio)) * baseFontSize;
+        const sizeRem = sizePx / baseFontSize;
 
-        const currentSizePx = (startSizeRem * baseFontSize) - ((startSizeRem - endSizeRem) * baseFontSize * scrollRatio);
-        const currentSizeRem = currentSizePx / baseFontSize;
-
-        heroImg.style.width = `${currentSizeRem}rem`;
-        heroImg.style.height = `${currentSizeRem}rem`;
+        heroImg.style.width = `${sizeRem}rem`;
+        heroImg.style.height = `${sizeRem}rem`;
+        logoImg.style.width = `${sizeRem}rem`;
+        logoImg.style.height = `${sizeRem}rem`;
 
         const startTop = window.innerHeight / 2;
         const endTop = 5.125 * baseFontSize;
-        const startLeft = window.innerWidth * 0.85;
+        const startLeftHero = window.innerWidth * 0.85;
+        const startLeftLogo = window.innerWidth * 0.15;
         const endLeft = window.innerWidth / 2;
 
         const currentTop = startTop - (startTop - endTop) * scrollRatio;
-        const currentLeft = startLeft - (startLeft - endLeft) * scrollRatio;
+        const currentLeftHero = startLeftHero - (startLeftHero - endLeft) * scrollRatio;
+        const currentLeftLogo = startLeftLogo + (endLeft - startLeftLogo) * scrollRatio;
 
         heroImg.style.top = `${currentTop}px`;
-        heroImg.style.left = `${currentLeft}px`;
+        heroImg.style.left = `${currentLeftHero}px`;
         heroImg.style.transform = "translate(-50%, -50%)";
 
+        logoImg.style.top = `${currentTop}px`;
+        logoImg.style.left = `${currentLeftLogo}px`;
+        logoImg.style.transform = "translate(-50%, -50%)";
+
         if (scrollRatio >= 1) {
-          heroImg.style.opacity = '0';
-          heroImg.style.pointerEvents = 'none';
+          heroImg.classList.add('fade-out');
+          logoImg.classList.add('fade-out');
         } else {
-          heroImg.style.opacity = '1';
-          heroImg.style.pointerEvents = 'auto';
+          heroImg.classList.remove('fade-out');
+          logoImg.classList.remove('fade-out');
         }
       }
 
