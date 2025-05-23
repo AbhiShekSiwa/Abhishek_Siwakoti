@@ -88,7 +88,7 @@ show-avatar: false
     <img id="hero-photo" src="{{ site.avatar }}" alt="Abhishek Siwakoti" />
   </section>
 
-  <!-- Extra height for full scroll test -->
+  <!-- Extra height to allow full scroll effect -->
   <div style="height: 200vh;"></div>
 
   <!-- Scroll Behavior Script -->
@@ -96,18 +96,20 @@ show-avatar: false
     const heroImg = document.getElementById('hero-photo');
     const maxScroll = 200;
     const startSize = 240;
-    const endSize = 60;
+    const endSize = 50;
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
       const scrollRatio = Math.min(1, scrollY / maxScroll);
 
+      // Shrink image size
       const size = startSize - (startSize - endSize) * scrollRatio;
       heroImg.style.width = `${size}px`;
       heroImg.style.height = `${size}px`;
 
+      // Animate to .avatar-container position (top: ~calc from bottom: -1.5rem)
       const startTop = window.innerHeight / 2;
-      const endTop = 16;
+      const endTop = 80; // estimated to match avatar-container below navbar
       const currentTop = startTop - (startTop - endTop) * scrollRatio;
 
       const startLeft = window.innerWidth;
