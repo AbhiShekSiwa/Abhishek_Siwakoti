@@ -24,7 +24,7 @@ navbar-links:
   Resources:
     - Resume: "resume"
    # - Tools and Skills: "TandS"
-  Contact me: "contactme"
+  Blog: "blog"
 
 ################
 # --- Logo --- #
