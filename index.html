@@ -289,41 +289,29 @@ show-avatar: true
   
     window.addEventListener('wheel', function (e) {
       const rect = timelineWrapper.getBoundingClientRect();
-      const centerThreshold = window.innerHeight * 0.3;
+      const centerThreshold = window.innerHeight * 0.5; // soft lock zone
   
       const timelineCentered =
         rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
   
-      const scrollLeft = timelineWrapper.scrollLeft;
-      const scrollMax = timelineWrapper.scrollWidth - timelineWrapper.clientWidth;
-  
-      // Add tolerance buffer for float precision
-      const atStart = scrollLeft < 2;
-      const atEnd = scrollLeft >= scrollMax - 2;
+      const atStart = timelineWrapper.scrollLeft <= 100;
+      const atEnd = timelineWrapper.scrollLeft >= (timelineWrapper.scrollWidth - timelineWrapper.clientWidth);
   
       const isScrollingDown = e.deltaY > 0;
       const isScrollingUp = e.deltaY < 0;
-
-      const pastTimelineTop = rect.bottom < 0;
-      const pastTimelineBottom = rect.top > window.innerHeight;
-  
-      // ✅ Allow scroll out when completely outside
-      if (pastTimelineTop && isScrollingUp) return;
-      if (pastTimelineBottom && isScrollingDown) return;
   
       if (timelineCentered) {
-        // ✅ Allow user to scroll out normally at edges
-        if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) {
-          return; // let vertical scroll resume
-        }
+        // Allow user to scroll out vertically at the ends
+        if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) return;
+  
         if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
           e.preventDefault();
+  
           timelineWrapper.scrollBy({
             left: e.deltaY,
             behavior: 'smooth'
           });
   
-          // ✅ Snap to top of timeline only when scrolling into the center zone
           window.scrollTo({
             top: timelineWrapper.offsetTop,
             behavior: 'smooth'
