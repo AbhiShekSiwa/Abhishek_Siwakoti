@@ -284,30 +284,35 @@ show-avatar: true
     });
   </script>
   
-<script>
+  <script>
+    const timelineWrapper = document.getElementById('timeline-wrapper');
   
-  const timelineWrapper = document.getElementById('timeline-wrapper');
-  window.addEventListener('wheel', function (e) {
-    const wrapperRect = timelineWrapper.getBoundingClientRect();
-    const inView = wrapperRect.top <= 0 && wrapperRect.bottom > window.innerHeight * 0.5;
-
-    const maxScrollLeft = timelineWrapper.scrollWidth - timelineWrapper.clientWidth;
-    const atStart = timelineWrapper.scrollLeft <= 0;
-    const atEnd = timelineWrapper.scrollLeft >= maxScrollLeft;
-
-    if (inView) {
-      const isScrollingRight = e.deltaY > 0;
-      const isScrollingLeft = e.deltaY < 0;
-
-      const preventDefaultScroll = !((atStart && isScrollingLeft) || (atEnd && isScrollingRight));
-
-      if (preventDefaultScroll) {
-        e.preventDefault(); // Lock vertical scroll
-        timelineWrapper.scrollLeft += e.deltaY; // Map vertical to horizontal
+    window.addEventListener('wheel', function (e) {
+      const wrapperRect = timelineWrapper.getBoundingClientRect();
+      const inView = wrapperRect.top <= 0 && wrapperRect.bottom > window.innerHeight;
+  
+      const maxScrollLeft = timelineWrapper.scrollWidth - timelineWrapper.clientWidth;
+      const currentScroll = timelineWrapper.scrollLeft;
+  
+      const atStart = currentScroll <= 0;
+      const atEnd = currentScroll >= maxScrollLeft;
+  
+      if (inView) {
+        const isScrollingRight = e.deltaY > 0;
+        const isScrollingLeft = e.deltaY < 0;
+  
+        // Only scroll horizontally if not at edge
+        const preventVertical = !((atStart && isScrollingLeft) || (atEnd && isScrollingRight));
+  
+        if (preventVertical) {
+          e.preventDefault(); // Lock vertical scroll
+          timelineWrapper.scrollLeft += e.deltaY; // Convert to horizontal scroll
+          window.scrollTo(0, timelineWrapper.offsetTop); // Freeze vertical scroll position
+        }
       }
-    }
-  }, { passive: false });
-</script>
+    }, { passive: false });
+  </script>
+
 
 
 
