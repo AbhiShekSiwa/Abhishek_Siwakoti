@@ -284,46 +284,53 @@ show-avatar: true
     });
   </script>
 
-<script>
-  const timelineWrapper = document.getElementById('timeline-wrapper');
-
-  window.addEventListener('wheel', function (e) {
-    const rect = timelineWrapper.getBoundingClientRect();
-    const centerThreshold = window.innerHeight * 0.3; // soft lock zone
-
-    const timelineCentered =
-      rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
-
-    const atStart = timelineWrapper.scrollLeft <= 0;
-    const atEnd = timelineWrapper.scrollLeft >= (timelineWrapper.scrollWidth - timelineWrapper.clientWidth);
-
-    const isScrollingDown = e.deltaY > 0;
-    const isScrollingUp = e.deltaY < 0;
-
-    if (timelineCentered) {
-      // ✅ Let the user scroll out through the top or bottom
-      if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) return;
-
-      // ✅ Don't block vertical scroll if near top of viewport and scrolling up
-      const nearTopOfPage = window.scrollY <= 0; 
-      if (isScrollingUp && rect.top >= 0 && nearTopOfPage) return;
-
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault();
-
-        timelineWrapper.scrollBy({
-          left: e.deltaY,
-          behavior: 'smooth'
-        });
-
-        window.scrollTo({
-          top: timelineWrapper.offsetTop,
-          behavior: 'smooth'
-        });
+  <script>
+    const timelineWrapper = document.getElementById('timeline-wrapper');
+    let lockedInTimeline = false;
+  
+    window.addEventListener('wheel', function (e) {
+      const rect = timelineWrapper.getBoundingClientRect();
+      const centerThreshold = window.innerHeight * 0.3;
+  
+      const timelineCentered =
+        rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
+  
+      const atStart = timelineWrapper.scrollLeft <= 0;
+      const atEnd = timelineWrapper.scrollLeft >= (timelineWrapper.scrollWidth - timelineWrapper.clientWidth);
+  
+      const isScrollingDown = e.deltaY > 0;
+      const isScrollingUp = e.deltaY < 0;
+  
+      if (!lockedInTimeline && timelineCentered) {
+        // Only lock when entering from top going down or bottom going up
+        if ((isScrollingDown && rect.top < 0) || (isScrollingUp && rect.bottom > window.innerHeight)) {
+          lockedInTimeline = true;
+        }
       }
-    }
-  }, { passive: false });
-</script>
+  
+      if (lockedInTimeline) {
+        if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) {
+          lockedInTimeline = false; // Unlock when exiting
+          return;
+        }
+  
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          e.preventDefault();
+  
+          timelineWrapper.scrollBy({
+            left: e.deltaY,
+            behavior: 'smooth'
+          });
+  
+          window.scrollTo({
+            top: timelineWrapper.offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      }
+    }, { passive: false });
+  </script>
+  
 
 
 
