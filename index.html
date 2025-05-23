@@ -61,8 +61,8 @@ show-avatar: true
       left: 85%;
       transform: translate(-50%, -50%);
       z-index: 1000;
-      width: 240px;
-      height: 240px;
+      width: 15rem;
+      height: 15rem;
       border-radius: 50%;
       transition: all 0.3s ease;
     }
@@ -98,16 +98,18 @@ show-avatar: true
     document.addEventListener("DOMContentLoaded", () => {
       const heroImg = document.getElementById('hero-photo');
       const maxScroll = 240;
-      const startSize = 240;
-      const endSize = 85;
+      const startSizePx = 240;
+      const endSizeRem = 3.125;
+      const baseFontSize = 16;
 
       function updatePosition() {
         const scrollY = window.scrollY;
         const scrollRatio = Math.min(1, scrollY / maxScroll);
 
-        const size = startSize - (startSize - endSize) * scrollRatio;
-        heroImg.style.width = `${size}px`;
-        heroImg.style.height = `${size}px`;
+        const sizePx = startSizePx - (startSizePx - (endSizeRem * baseFontSize)) * scrollRatio;
+        const sizeRem = sizePx / baseFontSize;
+        heroImg.style.width = `${sizeRem}rem`;
+        heroImg.style.height = `${sizeRem}rem`;
 
         const startTop = window.innerHeight / 2;
         const endTop = 82;
@@ -121,23 +123,13 @@ show-avatar: true
         heroImg.style.left = `${currentLeft}px`;
         heroImg.style.transform = "translate(-50%, -50%)";
 
-        // Toggle navbar avatar visibility with debug logging
-        const body = document.body;
-        const avatarContainer = document.querySelector('.avatar-container');
-
+        // Toggle navbar avatar visibility
         if (scrollY > maxScroll) {
-          if (heroImg.style.display !== 'none') {
-            console.log("🔽 Scroll passed threshold: Hiding hero, showing navbar avatar");
-          }
           heroImg.style.display = 'none';
-          body.classList.remove('hide-navbar-avatar');
-          if (avatarContainer) avatarContainer.offsetHeight;  // force reflow
+          document.body.classList.remove('hide-navbar-avatar');
         } else {
-          if (heroImg.style.display !== 'block') {
-            console.log("🔼 Scrolled up: Showing hero, hiding navbar avatar");
-          }
           heroImg.style.display = 'block';
-          body.classList.add('hide-navbar-avatar');
+          document.body.classList.add('hide-navbar-avatar');
         }
       }
 
