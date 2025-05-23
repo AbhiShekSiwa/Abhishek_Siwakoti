@@ -137,6 +137,7 @@ show-avatar: true
   <div style="height: 200vh;"></div>
 
   <script>
+    let hasExploded = false;
     document.addEventListener("DOMContentLoaded", () => {
       const heroImg = document.getElementById('hero-photo');
       const logoImg = document.getElementById('hero-logo');
@@ -175,7 +176,9 @@ show-avatar: true
         logoImg.style.left = `${currentLeftLogo}px`;
         logoImg.style.transform = "translate(-50%, -50%)";
 
-        if (scrollRatio >= 1) {
+        if (scrollRatio >= 1 && !hasExploded) {
+          hasExploded = true;
+        
           heroImg.classList.add('fade-out');
           logoImg.classList.add('fade-out');
         
@@ -185,15 +188,19 @@ show-avatar: true
           boomFlash.style.left = `${endLeft}px`;
           boomFlash.style.opacity = '1';
           boomFlash.style.transform = 'translate(-50%, -50%) scale(1.2)';
-
+        
           setTimeout(() => {
             boomFlash.style.opacity = '0';
             boomFlash.style.transform = 'translate(-50%, -50%) scale(0.5)';
           }, 200);
-        } else {
+        }
+        
+        // Reset if you scroll back to top
+        if (scrollY === 0) {
+          hasExploded = false;
           heroImg.classList.remove('fade-out');
           logoImg.classList.remove('fade-out');
-        }
+        } 
       }
 
       updatePosition();
