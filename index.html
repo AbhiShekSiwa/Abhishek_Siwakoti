@@ -11,44 +11,59 @@ show-avatar: true
   <title>{{ page.title }}</title>
 
   <style>
-    body {
-      font-family: sans-serif;
+    html, body {
       margin: 0;
       padding: 0;
+      font-family: 'Segoe UI', sans-serif;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 0.6em 1.2em;
-      margin: 0.2em;
-      background-color: #0085A1;
+    body {
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
       color: white;
+    }
+
+    a.btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background: white;
+      color: #1a2a6c;
       text-decoration: none;
       border-radius: 5px;
-      transition: background-color 0.3s ease;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
-    .btn:hover {
-      background-color: #005f73;
+    a.btn:hover {
+      background: #1a2a6c;
+      color: white;
     }
 
-    section#hero {
+    #hero {
+      min-height: 100vh;
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-direction: column;
-      padding: 4em 2em;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      padding: 4rem 2rem;
     }
 
-    section#hero h1 {
-      font-size: 3em;
+    #hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
     }
 
-    section#hero p {
-      font-size: 1.3em;
+    #hero p {
+      font-size: 1.3rem;
       max-width: 700px;
-      margin: auto;
+      margin-bottom: 2rem;
+    }
+
+    #hero .scroll-hint {
+      margin-top: 3rem;
+      font-size: 1.5rem;
+      opacity: 0.8;
     }
 
     #hero-photo {
@@ -57,8 +72,8 @@ show-avatar: true
       left: 85%;
       transform: translate(-50%, -50%);
       z-index: 1000;
-      width: 15rem;
-      height: 15rem;
+      width: 15.625rem;
+      height: 15.625rem;
       border-radius: 50%;
       transition: all 0.3s ease;
     }
@@ -68,6 +83,7 @@ show-avatar: true
         position: static;
         transform: none;
         margin: 2em auto 0 auto;
+        display: none;
       }
     }
   </style>
@@ -80,64 +96,63 @@ show-avatar: true
     <p>
       Aerospace student, designer, and builder of really cool things — from control systems to cat-powered simulations.
     </p>
-    <div style="margin-top: 2em;">
-      <a href="/portfolio/" class="btn">View Projects</a>
-      <a href="/resume/" class="btn">Resume</a>
-      <a href="/contactme/" class="btn">Contact Me</a>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+      <a href="/portfolio/" class="btn">🚀 View Projects</a>
+      <a href="/resume/" class="btn">📄 Resume</a>
+      <a href="/contactme/" class="btn">✉️ Contact Me</a>
     </div>
+    <div class="scroll-hint">↓ scroll to explore</div>
     <img id="hero-photo" src="{{ site.avatar }}" alt="Abhishek Siwakoti" />
   </section>
 
-  <div style="height: 200vh;"></div>
+  <!-- Extra scroll space -->
+  <div style="height: 125vh;"></div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const heroImg = document.getElementById('hero-photo');
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const heroImg = document.getElementById('hero-photo');
 
-    const baseFontSize = 16; // Default 1rem = 16px
-    const startSizeRem = 15.625; // 3.125 * 5
-    const endSizeRem = 3.125;
-    const maxScrollRem = 15.625;
-    const maxScroll = maxScrollRem * baseFontSize; // scroll distance in px
+      const baseFontSize = 16;
+      const startSizeRem = 15.625; // 3.125 * 5
+      const endSizeRem = 3.125;
+      const maxScrollRem = 15.625;
+      const maxScroll = maxScrollRem * baseFontSize;
 
-    function updatePosition() {
-      const scrollY = window.scrollY;
-      const scrollRatio = Math.min(1, scrollY / maxScroll);
+      function updatePosition() {
+        const scrollY = window.scrollY;
+        const scrollRatio = Math.min(1, scrollY / maxScroll);
 
-      const currentSizePx = (startSizeRem * baseFontSize) - ((startSizeRem - endSizeRem) * baseFontSize * scrollRatio);
-      const currentSizeRem = currentSizePx / baseFontSize;
+        const currentSizePx = (startSizeRem * baseFontSize) - ((startSizeRem - endSizeRem) * baseFontSize * scrollRatio);
+        const currentSizeRem = currentSizePx / baseFontSize;
 
-      heroImg.style.width = `${currentSizeRem}rem`;
-      heroImg.style.height = `${currentSizeRem}rem`;
+        heroImg.style.width = `${currentSizeRem}rem`;
+        heroImg.style.height = `${currentSizeRem}rem`;
 
-      const startTop = window.innerHeight / 2;
-      const endTop = 5.125 * baseFontSize; // ~82px
-      const startLeft = window.innerWidth * 0.85;
-      const endLeft = window.innerWidth / 2;
+        const startTop = window.innerHeight / 2;
+        const endTop = 5.125 * baseFontSize;
+        const startLeft = window.innerWidth * 0.85;
+        const endLeft = window.innerWidth / 2;
 
-      const currentTop = startTop - (startTop - endTop) * scrollRatio;
-      const currentLeft = startLeft - (startLeft - endLeft) * scrollRatio;
+        const currentTop = startTop - (startTop - endTop) * scrollRatio;
+        const currentLeft = startLeft - (startLeft - endLeft) * scrollRatio;
 
-      heroImg.style.top = `${currentTop}px`;
-      heroImg.style.left = `${currentLeft}px`;
-      heroImg.style.transform = "translate(-50%, -50%)";
-      
-      if (scrollRatio >= 1) {
-        heroImg.style.opacity = '0';
-        heroImg.style.pointerEvents = 'none';
-      } else {
-        heroImg.style.opacity = '1';
-        heroImg.style.pointerEvents = 'auto';
+        heroImg.style.top = `${currentTop}px`;
+        heroImg.style.left = `${currentLeft}px`;
+        heroImg.style.transform = "translate(-50%, -50%)";
+
+        if (scrollRatio >= 1) {
+          heroImg.style.opacity = '0';
+          heroImg.style.pointerEvents = 'none';
+        } else {
+          heroImg.style.opacity = '1';
+          heroImg.style.pointerEvents = 'auto';
+        }
       }
-      
-    }
 
-    updatePosition();
-    window.addEventListener('scroll', updatePosition);
-    window.addEventListener('resize', updatePosition);
-  });
-</script>
-
-
+      updatePosition();
+      window.addEventListener('scroll', updatePosition);
+      window.addEventListener('resize', updatePosition);
+    });
+  </script>
 </body>
 </html>
