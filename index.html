@@ -262,27 +262,41 @@ show-avatar: true
     });
   </script>
   
-  <script>
-    const timelineWrapper = document.getElementById('timeline-wrapper');
-    const timelineScroll = document.getElementById('timeline-scroll');
-    const timelineItems = document.querySelectorAll('.timeline-item');
+<script>
+  const timelineWrapper = document.getElementById('timeline-wrapper');
+  const timelineScroll = document.getElementById('timeline-scroll');
   
-    let horizontalScroll = 0;
+  let horizontalScroll = 0;
   
-    window.addEventListener('wheel', function (e) {
-      const wrapperRect = timelineWrapper.getBoundingClientRect();
-      
-      if (wrapperRect.top <= 0 && wrapperRect.bottom > 0) {
-        e.preventDefault();
-        horizontalScroll += e.deltaY;
-        horizontalScroll = Math.max(0, Math.min(horizontalScroll, timelineScroll.scrollWidth - window.innerWidth));
-        timelineScroll.style.transform = `translateX(-${horizontalScroll}px)`;
-        
-        // Lock vertical scroll at top of timeline
-        window.scrollTo(0, timelineWrapper.offsetTop);
+  window.addEventListener('wheel', function (e) {
+    const wrapperRect = timelineWrapper.getBoundingClientRect();
+    const inView = wrapperRect.top <= 0 && wrapperRect.bottom > 0;
+    const maxScroll = timelineScroll.scrollWidth - window.innerWidth;
+  
+      // Only handle scroll if in view of timeline
+    if (inView) {
+    const atStart = horizontalScroll <= 0;
+    const atEnd = horizontalScroll >= maxScroll;
+
+    const isScrollingRight = e.deltaY > 0;
+    const isScrollingLeft = e.deltaY < 0;
+
+      // Prevent scrolling only in the middle zone
+    if (!(atStart && isScrollingLeft) && !(atEnd && isScrollingRight)) {
+      e.preventDefault();
+      horizontalScroll += e.deltaY;
+      horizontalScroll = Math.max(0, Math.min(horizontalScroll, maxScroll));
+      timelineScroll.style.transform = `translateX(-${horizontalScroll}px)`;
+
+        // Freeze vertical scroll while active
+       if (!(atStart || atEnd)) {
+          window.scrollTo(0, timelineWrapper.offsetTop);
+        }
       }
-    }, { passive: false });
-  </script>
+    }
+  }, { passive: false });
+</script>
+
 
 </body>
 </html>
