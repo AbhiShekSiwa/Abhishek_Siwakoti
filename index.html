@@ -286,11 +286,10 @@ show-avatar: true
 
   <script>
     const timelineWrapper = document.getElementById('timeline-wrapper');
-    let hasSnapped = false;
   
     window.addEventListener('wheel', function (e) {
       const rect = timelineWrapper.getBoundingClientRect();
-      const centerThreshold = window.innerHeight * 0.5;
+      const centerThreshold = window.innerHeight * 0.3; // soft lock zone
   
       const timelineCentered =
         rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
@@ -302,34 +301,26 @@ show-avatar: true
       const isScrollingUp = e.deltaY < 0;
   
       if (timelineCentered) {
-        if (!hasSnapped) {
-          hasSnapped = true;
+        // Allow user to scroll out vertically at the ends
+        if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) return;
+  
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          e.preventDefault();
+  
+          timelineWrapper.scrollBy({
+            left: e.deltaY,
+            behavior: 'smooth'
+          });
+  
           window.scrollTo({
             top: timelineWrapper.offsetTop,
             behavior: 'smooth'
           });
-          return;
         }
-  
-        // ✅ Let vertical scroll resume if at start or end
-        if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) {
-          hasSnapped = false;
-          return; // Don't block scroll here — allow escape
-        }
-  
-        // ✅ Smooth horizontal scrolling
-        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-          e.preventDefault();
-          timelineWrapper.scrollBy({
-            left: e.deltaY * 0.5,
-            behavior: 'smooth'
-          });
-        }
-      } else {
-        hasSnapped = false;
       }
     }, { passive: false });
   </script>
+
 
 </body>
 </html>
