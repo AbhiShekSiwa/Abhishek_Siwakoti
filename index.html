@@ -124,7 +124,8 @@ show-avatar: true
     #timeline-scroll {
       display: flex;
       gap: 4rem;
-      padding: 4rem 0; /* ✅ Correct syntax */
+      padding: 4rem 0;
+      margin-left: -2rem; 
       width: max-content;
       position: absolute;
       top: 50%;
@@ -132,10 +133,11 @@ show-avatar: true
       transform: translateY(-50%);
       transition: transform 0.3s ease;
     }
+
     .timeline-item {
       flex: 0 0 auto;
       width: 300px;
-      background: rgba(255, 255, 255, 0.1); /* subtle transparency */
+      background: rgba(255, 255, 255, 0.1);
       color: white;
       border-radius: 10px;
       padding: 2rem;
