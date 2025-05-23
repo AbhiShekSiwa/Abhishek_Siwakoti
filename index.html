@@ -121,6 +121,15 @@ show-avatar: true
       heroImg.style.top = `${currentTop}px`;
       heroImg.style.left = `${currentLeft}px`;
       heroImg.style.transform = "translate(-50%, -50%)";
+      
+      if (scrollRatio >= 1) {
+        heroImg.style.opacity = '0';
+        heroImg.style.pointerEvents = 'none';
+      } else {
+        heroImg.style.opacity = '1';
+        heroImg.style.pointerEvents = 'auto';
+      }
+      
     }
 
     updatePosition();
