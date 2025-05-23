@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Welcome
-show-avatar: false
+show-avatar: true
 ---
 
 <!DOCTYPE html>
@@ -32,6 +32,10 @@ show-avatar: false
       background-color: #005f73;
     }
 
+    body.hide-navbar-avatar .avatar-container {
+      display: none !important;
+    }
+
     section#hero {
       display: flex;
       align-items: center;
@@ -54,8 +58,8 @@ show-avatar: false
     #hero-photo {
       position: fixed;
       top: 50%;
-      left: 100%;
-      transform: translate(-100%, -50%);
+      left: 85%;
+      transform: translate(-50%, -50%);
       z-index: 1000;
       width: 240px;
       height: 240px;
@@ -70,11 +74,7 @@ show-avatar: false
         margin: 2em auto 0 auto;
       }
     }
-  
-    .hide-navbar-avatar .avatar-container {
-      display: none !important;
-    }
-    </style>
+  </style>
 </head>
 
 <body class="hide-navbar-avatar">
@@ -92,47 +92,49 @@ show-avatar: false
     <img id="hero-photo" src="{{ site.avatar }}" alt="Abhishek Siwakoti" />
   </section>
 
-  <!-- Extra height to allow full scroll effect -->
   <div style="height: 200vh;"></div>
 
-  <!-- Scroll Behavior Script -->
   <script>
-    const heroImg = document.getElementById('hero-photo');
-    const maxScroll = 200;
-    const startSize = 240;
-    const endSize = 50;
+    document.addEventListener("DOMContentLoaded", () => {
+      const heroImg = document.getElementById('hero-photo');
+      const maxScroll = 200;
+      const startSize = 240;
+      const endSize = 50;
 
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const scrollRatio = Math.min(1, scrollY / maxScroll);
+      function updatePosition() {
+        const scrollY = window.scrollY;
+        const scrollRatio = Math.min(1, scrollY / maxScroll);
 
-      // Shrink image size
-      const size = startSize - (startSize - endSize) * scrollRatio;
-      heroImg.style.width = `${size}px`;
-      heroImg.style.height = `${size}px`;
+        const size = startSize - (startSize - endSize) * scrollRatio;
+        heroImg.style.width = `${size}px`;
+        heroImg.style.height = `${size}px`;
 
-      // Animate to .avatar-container position (top: ~calc from bottom: -1.5rem)
-      const startTop = window.innerHeight / 2;
-      const endTop = 80; // estimated to match avatar-container below navbar
-      const currentTop = startTop - (startTop - endTop) * scrollRatio;
+        const startTop = window.innerHeight / 2;
+        const endTop = 82;
+        const startLeft = window.innerWidth * 0.85;
+        const endLeft = window.innerWidth / 2;
 
-      const startLeft = window.innerWidth;
-      const endLeft = window.innerWidth / 2;
-      const currentLeft = startLeft - (startLeft - endLeft) * scrollRatio;
+        const currentTop = startTop - (startTop - endTop) * scrollRatio;
+        const currentLeft = startLeft - (startLeft - endLeft) * scrollRatio;
 
-      heroImg.style.top = `${currentTop}px`;
-      heroImg.style.left = `${currentLeft}px`;
-      heroImg.style.transform = "translate(-50%, -50%)";
-    });
-  
-      // Toggle avatars
-      if (scrollY > maxScroll) {
-        heroImg.style.display = 'none';
-        document.body.classList.remove('hide-navbar-avatar');
-      } else {
-        heroImg.style.display = 'block';
-        document.body.classList.add('hide-navbar-avatar');
+        heroImg.style.top = `${currentTop}px`;
+        heroImg.style.left = `${currentLeft}px`;
+        heroImg.style.transform = "translate(-50%, -50%)";
+
+        // Toggle navbar avatar visibility
+        if (scrollY > maxScroll) {
+          heroImg.style.display = 'none';
+          document.body.classList.remove('hide-navbar-avatar');
+        } else {
+          heroImg.style.display = 'block';
+          document.body.classList.add('hide-navbar-avatar');
+        }
       }
-    </script>
+
+      updatePosition();
+      window.addEventListener('scroll', updatePosition);
+      window.addEventListener('resize', updatePosition);
+    });
+  </script>
 </body>
 </html>
