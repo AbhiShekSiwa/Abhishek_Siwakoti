@@ -289,22 +289,38 @@ show-avatar: true
 
   window.addEventListener('wheel', function (e) {
     const rect = timelineWrapper.getBoundingClientRect();
-    const inView = rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2;
+    const centerThreshold = window.innerHeight * 0.3; // soft lock zone
+
+    const timelineCentered =
+      rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
 
     const atStart = timelineWrapper.scrollLeft <= 0;
     const atEnd = timelineWrapper.scrollLeft >= (timelineWrapper.scrollWidth - timelineWrapper.clientWidth);
-    if (inView && !(atStart && e.deltaY < 0) && !(atEnd && e.deltaY > 0)) {
-      // Only map vertical scroll when it dominates
+
+    const isScrollingDown = e.deltaY > 0;
+    const isScrollingUp = e.deltaY < 0;
+
+    if (timelineCentered) {
+      // Allow user to scroll out vertically at the ends
+      if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) return;
+
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         e.preventDefault();
+
         timelineWrapper.scrollBy({
           left: e.deltaY,
-          behavior: 'smooth' // Makes the scroll transition smooth
+          behavior: 'smooth'
+        });
+
+        window.scrollTo({
+          top: timelineWrapper.offsetTop,
+          behavior: 'smooth'
         });
       }
     }
   }, { passive: false });
 </script>
+
 
 
 </body>
