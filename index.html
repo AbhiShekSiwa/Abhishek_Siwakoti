@@ -102,8 +102,6 @@ show-avatar: true
     
     #boom-flash {
       position: fixed;
-      top: 50%;
-      left: 50%;
       width: 8rem;
       height: 8rem;
       background: radial-gradient(circle, white 0%, transparent 80%);
@@ -114,6 +112,7 @@ show-avatar: true
       transition: opacity 0.2s ease, transform 0.2s ease;
       z-index: 1500;
     }
+
   </style>
 </head>
 
@@ -182,8 +181,11 @@ show-avatar: true
         
           // Boom flash effect
           const boomFlash = document.getElementById('boom-flash');
+          boomFlash.style.top = `${endTop}px`;
+          boomFlash.style.left = `${endLeft}px`;
           boomFlash.style.opacity = '1';
           boomFlash.style.transform = 'translate(-50%, -50%) scale(1.2)';
+
           setTimeout(() => {
             boomFlash.style.opacity = '0';
             boomFlash.style.transform = 'translate(-50%, -50%) scale(0.5)';
