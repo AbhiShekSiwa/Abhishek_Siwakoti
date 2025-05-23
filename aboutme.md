@@ -87,8 +87,11 @@ Plus, if I could bend space and time, I'd go live with raccacoonie.
 ## 😻 Meet My Cat
 
 <div style="display: flex; align-items: flex-start; gap: 1.5em; flex-wrap: wrap;">
-  <img id="garmadon-img" src="/assets/img/MeanGarmadon.jpeg" alt="Garmadon Buny Kaliflower" 
-       style="max-width: 220px; height: auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.15); cursor: pointer;" />
+  <div style="text-align: center;">
+    <img id="garmadon-img" src="/assets/img/MeanGarmadon.jpeg" alt="Garmadon Buny Kaliflower" 
+         style="max-width: 220px; height: auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.15); cursor: pointer;" />
+    <p style="font-size: 0.9em; margin-top: 0.5em; color: #666;">(Psst… try clicking him a few times 👀)</p>
+  </div>
 
   <div style="flex: 1; min-width: 250px;">
     <p style="font-size: 1.05em; line-height: 1.6;">
@@ -108,7 +111,7 @@ Plus, if I could bend space and time, I'd go live with raccacoonie.
   garmadonImg.addEventListener('click', () => {
     clickCount++;
     if (clickCount === 5) {
-      garmadonImg.src = "/assets/img/Garmadon.JPG"; // Switch to nice Garmadon
+      garmadonImg.src = "/assets/img/Garmadon.JPG";
       garmadonImg.alt = "Sweet Garmadon";
     }
   });
