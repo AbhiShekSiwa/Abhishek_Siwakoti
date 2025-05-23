@@ -284,54 +284,62 @@ show-avatar: true
     });
   </script>
   
-  <script>
-    const timelineWrapper = document.getElementById('timeline-wrapper');
-    let scrollVelocity = 0;
-    let isAnimating = false;
-  
-    function animateScroll() {
-      if (Math.abs(scrollVelocity) < 0.1) {
-        isAnimating = false;
-        return;
-      }
-  
-      timelineWrapper.scrollLeft += scrollVelocity;
-      scrollVelocity *= 0.85; // Smooth decay
-      requestAnimationFrame(animateScroll);
+<script>
+  const timelineWrapper = document.getElementById('timeline-wrapper');
+  let scrollVelocity = 0;
+  let isAnimating = false;
+
+  function animateScroll() {
+    if (Math.abs(scrollVelocity) < 0.1) {
+      isAnimating = false;
+      return;
     }
-  
-    window.addEventListener('wheel', function (e) {
-      const rect = timelineWrapper.getBoundingClientRect();
-      const centerThreshold = window.innerHeight * 0.5;
-  
-      const timelineCentered =
-        rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
-  
-      const atStart = timelineWrapper.scrollLeft <= 100;
-      const atEnd = timelineWrapper.scrollLeft >= (timelineWrapper.scrollWidth - timelineWrapper.clientWidth);
-  
-      const isScrollingDown = e.deltaY > 0;
-      const isScrollingUp = e.deltaY < 0;
-  
-      if (timelineCentered) {
-        if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) return;
-  
-        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-          e.preventDefault();
-          scrollVelocity += e.deltaY * 0.5; // Add to velocity
-          if (!isAnimating) {
-            isAnimating = true;
-            requestAnimationFrame(animateScroll);
-          }
-  
-          window.scrollTo({
-            top: timelineWrapper.offsetTop,
-            behavior: 'smooth'
-          });
+
+    timelineWrapper.scrollLeft += scrollVelocity;
+    scrollVelocity *= 0.85; // Smooth easing
+    requestAnimationFrame(animateScroll);
+  }
+
+  window.addEventListener('wheel', function (e) {
+    const rect = timelineWrapper.getBoundingClientRect();
+    const centerThreshold = window.innerHeight * 0.5;
+
+    const timelineCentered =
+      rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
+
+    const scrollLeft = timelineWrapper.scrollLeft;
+    const scrollMax = timelineWrapper.scrollWidth - timelineWrapper.clientWidth;
+
+    const atStart = scrollLeft <= 100;
+    const atEnd = scrollLeft >= scrollMax - 2;
+
+    const isScrollingDown = e.deltaY > 0;
+    const isScrollingUp = e.deltaY < 0;
+
+    // Allow vertical scrolling out of the section
+    if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) return;
+
+    // ✅ Inside timeline center zone
+    if (timelineCentered) {
+      // Only intercept when vertical dominates (normal horizontal allowed!)
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        scrollVelocity += e.deltaY * 0.5;
+        if (!isAnimating) {
+          isAnimating = true;
+          requestAnimationFrame(animateScroll);
         }
+
+        // Snap vertically once
+        window.scrollTo({
+          top: timelineWrapper.offsetTop,
+          behavior: 'smooth'
+        });
       }
-    }, { passive: false });
-  </script>
+    }
+  }, { passive: false });
+</script>
+
 
   
     
