@@ -283,7 +283,7 @@ show-avatar: true
       window.addEventListener('resize', updatePosition);
     });
   </script>
-  
+    
   <script>
     const timelineWrapper = document.getElementById('timeline-wrapper');
     let scrollVelocity = 0;
@@ -316,13 +316,11 @@ show-avatar: true
         // Allow user to scroll out vertically at the ends
         if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) return;
   
-        // Combine deltaY and deltaX into one directional scroll
-        const combinedDelta = e.deltaY + e.deltaX;
-  
-        if (Math.abs(combinedDelta) > 0) {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
           e.preventDefault();
   
-          scrollVelocity += combinedDelta * 0.5;
+          // Smooth scrolling: inject momentum
+          scrollVelocity += e.deltaY * 0.5;
           if (!isScrolling) {
             isScrolling = true;
             requestAnimationFrame(smoothScrollStep);
