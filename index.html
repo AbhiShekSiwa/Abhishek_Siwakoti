@@ -124,6 +124,7 @@ show-avatar: true
       align-items: center;
       background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
       scrollbar-width: none; /* Firefox */
+      scroll-behavior: smooth;
     }
     #timeline-wrapper::-webkit-scrollbar {
       display: none; /* Chrome, Safari, Edge */
@@ -150,7 +151,6 @@ show-avatar: true
     .timeline-item:hover {
       transform: scale(1.05);
     }
-}
 
   </style>
 </head>
@@ -186,7 +186,7 @@ show-avatar: true
     </div>
     <div class="timeline-item">
       <h2>2023</h2>
-      <p>Explored VR simulators, built dynamic models, and took a deep dive into control systems.</p>
+      <p>Explored VR simulators, built dynamic models, and deeply explored control systems.</p>
     </div>
     <div class="timeline-item">
       <h2>2024</h2>
@@ -204,6 +204,7 @@ show-avatar: true
       <h2>2027</h2>
       <p>Graduated with an Aerospace Engineering degree, building toward an orbital mechanics career.</p>
     </div>
+    <div style="min-width: 2rem;"></div>
   </div>
 </section>
 
@@ -284,7 +285,8 @@ show-avatar: true
   </script>
   
 <script>
-
+  
+  const timelineWrapper = document.getElementById('timeline-wrapper');
   window.addEventListener('wheel', function (e) {
     const wrapperRect = timelineWrapper.getBoundingClientRect();
     const inView = wrapperRect.top <= 0 && wrapperRect.bottom > window.innerHeight * 0.5;
