@@ -126,11 +126,16 @@ show-avatar: true
       top: 50%;
       left: 0;
       transform: translateY(-50%);
+      width: 100vw;
+      overflow: hidden;
+    }
+    
+    #timeline-inner {
       display: flex;
-      gap: 4rem; /* ✅ adds spacing between items */
-      padding: 0;
-      margin-left: -4rem; /* ✅ cancels first gap to align flush */
-      width: max-content;
+      gap: 4rem;
+      padding-left: 0; /* remove the gap */
+      transform: translateX(0);
+      transition: transform 0.3s ease;
     }
     .timeline-item {
       flex: 0 0 auto;
@@ -175,34 +180,35 @@ show-avatar: true
 
   <section id="timeline-wrapper">
     <div id="timeline-scroll">
-      <div class="timeline-item">
-        <h2>2021</h2>
-        <p>Started at CU Boulder. Learned MATLAB, SolidWorks, and made my first rocket sim!</p>
-      </div>
-      <div class="timeline-item">
-        <h2>2022</h2>
-        <p>Led boost-glide vehicle lab. CAD, flight dynamics, and team coordination.</p>
-      </div>
-      <div class="timeline-item">
-        <h2>2023</h2>
-        <p>Explored VR simulators, built dynamic models, and took a deep dive into control systems.</p>
-      </div>
-      <div class="timeline-item">
-        <h2>2024</h2>
-        <p>Refined my portfolio and launched my website.</p>
-      </div>
-      <div class="timeline-item">
-        <h2>2025</h2>
-        <p>To Be Determiened.</p>
-      </div>
-      <div class="timeline-item">
-        <h2>2026</h2>
-        <p>To Be Determiened.</p>
-      </div>
-      <div class="timeline-item">
-        <h2>2027</h2>
-        <p>Graduated with an Aerospace Engineering degree, building toward an orbital mechanics career.</p>
-      </div>
+      <div id="timeline-inner">
+        <div class="timeline-item">
+          <h2>2021</h2>
+          <p>Started at CU Boulder. Learned MATLAB, SolidWorks, and made my first rocket sim!</p>
+        </div>
+        <div class="timeline-item">
+          <h2>2022</h2>
+          <p>Led boost-glide vehicle lab. CAD, flight dynamics, and team coordination.</p>
+        </div>
+        <div class="timeline-item">
+          <h2>2023</h2>
+          <p>Explored VR simulators, built dynamic models, and took a deep dive into control systems.</p>
+        </div>
+        <div class="timeline-item">
+          <h2>2024</h2>
+          <p>Refined my portfolio and launched my website.</p>
+        </div>
+        <div class="timeline-item">
+          <h2>2025</h2>
+          <p>To Be Determiened.</p>
+        </div>
+        <div class="timeline-item">
+          <h2>2026</h2>
+          <p>To Be Determiened.</p>
+        </div>
+        <div class="timeline-item">
+          <h2>2027</h2>
+          <p>Graduated with an Aerospace Engineering degree, building toward an orbital mechanics career.</p>
+        </div>
     </div>
   </section>
 
@@ -283,7 +289,7 @@ show-avatar: true
   
 <script>
   const timelineWrapper = document.getElementById('timeline-wrapper');
-  const timelineScroll = document.getElementById('timeline-scroll');
+  const timelineScroll = document.getElementById('timeline-inner');
   
   let horizontalScroll = 0;
   
@@ -305,7 +311,8 @@ show-avatar: true
       e.preventDefault();
       horizontalScroll += e.deltaY;
       horizontalScroll = Math.max(0, Math.min(horizontalScroll, maxScroll));
-      timelineScroll.style.transform = `translateX(-${horizontalScroll}px)`;
+     timelineScroll.style.transform = `translateX(-${horizontalScroll}px)`;
+
 
         // Freeze vertical scroll while active
        if (!(atStart || atEnd)) {
