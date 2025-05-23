@@ -95,35 +95,37 @@ show-avatar: true
   <div style="height: 200vh;"></div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const heroImg = document.getElementById('hero-photo');
-      const maxScroll = 300;
-      const startSizePx = 300;
-      const endSizeRem = 3.125;
-      const baseFontSize = 16;
+  document.addEventListener("DOMContentLoaded", () => {
+    const heroImg = document.getElementById('hero-photo');
+    const maxScroll = 240;
+    const startSizePx = 240;
+    const endSizeRem = 3.125;
+    const baseFontSize = 16;
 
-      function updatePosition() {
-        const scrollY = window.scrollY;
-        const scrollRatio = Math.min(1, scrollY / maxScroll);
+    function updatePosition() {
+      const scrollY = window.scrollY;
+      const scrollRatio = Math.min(1, scrollY / maxScroll);
 
-        const sizePx = startSizePx - (startSizePx - (endSizeRem * baseFontSize)) * scrollRatio;
-        const sizeRem = sizePx / baseFontSize;
-        heroImg.style.width = `${sizeRem}rem`;
-        heroImg.style.height = `${sizeRem}rem`;
+      const sizePx = startSizePx - (startSizePx - (endSizeRem * baseFontSize)) * scrollRatio;
+      const sizeRem = sizePx / baseFontSize;
+      heroImg.style.width = `${sizeRem}rem`;
+      heroImg.style.height = `${sizeRem}rem`;
 
-        const startTop = window.innerHeight / 2;
-        const endTop = 82;
-        const startLeft = window.innerWidth * 0.85;
-        const endLeft = window.innerWidth / 2;
+      const startTop = window.innerHeight / 2;
+      const endTop = 82;
+      const startLeft = window.innerWidth * 0.85;
+      const endLeft = window.innerWidth / 2;
 
-        const currentTop = startTop - (startTop - endTop) * scrollRatio;
-        const currentLeft = startLeft - (startLeft - endLeft) * scrollRatio;
+      const currentTop = startTop - (startTop - endTop) * scrollRatio;
+      const currentLeft = startLeft - (startLeft - endLeft) * scrollRatio;
 
-        heroImg.style.top = `${currentTop}px`;
-        heroImg.style.left = `${currentLeft}px`;
-        heroImg.style.transform = "translate(-50%, -50%)";
+      heroImg.style.top = `${currentTop}px`;
+      heroImg.style.left = `${currentLeft}px`;
+      heroImg.style.transform = "translate(-50%, -50%)";
 
-        // Toggle navbar avatar visibility
+      // Avatar toggle logic
+      const avatarContainer = document.querySelector('.avatar-container');
+      if (avatarContainer) {
         if (scrollY > maxScroll) {
           heroImg.style.display = 'none';
           document.body.classList.remove('hide-navbar-avatar');
@@ -131,12 +133,16 @@ show-avatar: true
           heroImg.style.display = 'block';
           document.body.classList.add('hide-navbar-avatar');
         }
+      } else {
+        console.warn("⚠️ .avatar-container not found in DOM");
       }
+    }
 
-      updatePosition();
-      window.addEventListener('scroll', updatePosition);
-      window.addEventListener('resize', updatePosition);
-    });
-  </script>
+    updatePosition();
+    window.addEventListener('scroll', updatePosition);
+    window.addEventListener('resize', updatePosition);
+  });
+</script>
+
 </body>
 </html>
