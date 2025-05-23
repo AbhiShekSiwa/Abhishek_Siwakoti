@@ -289,21 +289,22 @@ show-avatar: true
 
   window.addEventListener('wheel', function (e) {
     const rect = timelineWrapper.getBoundingClientRect();
-    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+    const inView = rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2;
 
-    if (inView) {
-      e.preventDefault(); // Fully lock vertical scrolling
-      timelineWrapper.scrollLeft += e.deltaY; // Convert vertical scroll to horizontal
-      window.scrollTo(0, timelineWrapper.offsetTop); // Lock the scroll position to the timeline's top
+    const atStart = timelineWrapper.scrollLeft <= 0;
+    const atEnd = timelineWrapper.scrollLeft >= (timelineWrapper.scrollWidth - timelineWrapper.clientWidth);
+    if (inView && !(atStart && e.deltaY < 0) && !(atEnd && e.deltaY > 0)) {
+      // Only map vertical scroll when it dominates
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        timelineWrapper.scrollBy({
+          left: e.deltaY,
+          behavior: 'smooth' // Makes the scroll transition smooth
+        });
+      }
     }
   }, { passive: false });
 </script>
-
-
-
-
-
-
 
 
 </body>
