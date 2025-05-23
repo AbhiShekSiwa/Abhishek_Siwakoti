@@ -14,8 +14,10 @@ show-avatar: true
     html, body {
       margin: 0;
       padding: 0;
+      overflow-x: hidden; /* 👈 add this line */
       font-family: 'Segoe UI', sans-serif;
     }
+
 
     body {
       background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
@@ -122,7 +124,7 @@ show-avatar: true
     #timeline-scroll {
       display: flex;
       gap: 4rem;
-      padding: 4rem; 0; 
+      padding: 4rem 0; /* ✅ Correct syntax */
       width: max-content;
       position: absolute;
       top: 50%;
