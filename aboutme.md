@@ -78,9 +78,11 @@ I believe in:
 
 ## 🎬 If My Life Were a Movie...
 
-It would be **[The Princess Bride](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29)**: a mix of wonder, wit, and sword fights (okay maybe not the last one... yet).
+It would be [*Everything Everywhere All at Once*](https://en.wikipedia.org/wiki/Everything_Everywhere_All_at_Once): chaotic, beautiful, emotional, and oddly philosophical — with googly eyes, multiverse jumps, and yes... **Raccacooniee**. 🦝👨‍🍳
 
-You can replace this with your favorite movie or fun metaphor for your life/journey.
+There’s something about embracing the mess of life while still choosing kindness and purpose that just resonates.  
+Plus, if I could bend space and time, I'd go live with raccacoonie. 
+
 
 ---
 
