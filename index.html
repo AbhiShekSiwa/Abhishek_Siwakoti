@@ -294,7 +294,7 @@ show-avatar: true
       const timelineCentered =
         rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
   
-      const atStart = timelineWrapper.scrollLeft <= 0;
+     const atStart = Math.abs(timelineWrapper.scrollLeft) < 2;
       const atEnd = timelineWrapper.scrollLeft >= (timelineWrapper.scrollWidth - timelineWrapper.clientWidth);
   
       const isScrollingDown = e.deltaY > 0;
