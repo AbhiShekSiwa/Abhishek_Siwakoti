@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Welcome
-show-avatar: true
+show-avatar: false
 ---
 
 <!DOCTYPE html>
@@ -30,10 +30,6 @@ show-avatar: true
 
     .btn:hover {
       background-color: #005f73;
-    }
-
-    .hide-navbar-avatar .avatar-container {
-      display: none !important;
     }
 
     section#hero {
@@ -74,7 +70,11 @@ show-avatar: true
         margin: 2em auto 0 auto;
       }
     }
-  </style>
+  
+    .hide-navbar-avatar .avatar-container {
+      display: none !important;
+    }
+    </style>
 </head>
 
 <body class="hide-navbar-avatar">
@@ -92,43 +92,47 @@ show-avatar: true
     <img id="hero-photo" src="{{ site.avatar }}" alt="Abhishek Siwakoti" />
   </section>
 
+  <!-- Extra height to allow full scroll effect -->
   <div style="height: 200vh;"></div>
 
+  <!-- Scroll Behavior Script -->
   <script>
     const heroImg = document.getElementById('hero-photo');
-    const scrollThreshold = 200;
+    const maxScroll = 200;
     const startSize = 240;
     const endSize = 50;
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
-      const scrollRatio = Math.min(1, scrollY / scrollThreshold);
+      const scrollRatio = Math.min(1, scrollY / maxScroll);
 
+      // Shrink image size
       const size = startSize - (startSize - endSize) * scrollRatio;
       heroImg.style.width = `${size}px`;
       heroImg.style.height = `${size}px`;
 
+      // Animate to .avatar-container position (top: ~calc from bottom: -1.5rem)
       const startTop = window.innerHeight / 2;
-      const endTop = 82;
+      const endTop = 80; // estimated to match avatar-container below navbar
+      const currentTop = startTop - (startTop - endTop) * scrollRatio;
+
       const startLeft = window.innerWidth;
       const endLeft = window.innerWidth / 2;
-
-      const currentTop = startTop - (startTop - endTop) * scrollRatio;
       const currentLeft = startLeft - (startLeft - endLeft) * scrollRatio;
 
       heroImg.style.top = `${currentTop}px`;
       heroImg.style.left = `${currentLeft}px`;
       heroImg.style.transform = "translate(-50%, -50%)";
-
+    });
+  
       // Toggle avatars
-      if (scrollY > scrollThreshold) {
+      if (scrollY > maxScroll) {
         heroImg.style.display = 'none';
         document.body.classList.remove('hide-navbar-avatar');
       } else {
         heroImg.style.display = 'block';
         document.body.classList.add('hide-navbar-avatar');
       }
-    });
-  </script>
+    </script>
 </body>
 </html>
