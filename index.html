@@ -121,13 +121,23 @@ show-avatar: true
         heroImg.style.left = `${currentLeft}px`;
         heroImg.style.transform = "translate(-50%, -50%)";
 
-        // Toggle navbar avatar visibility
+        // Toggle navbar avatar visibility with debug logging
+        const body = document.body;
+        const avatarContainer = document.querySelector('.avatar-container');
+
         if (scrollY > maxScroll) {
+          if (heroImg.style.display !== 'none') {
+            console.log("🔽 Scroll passed threshold: Hiding hero, showing navbar avatar");
+          }
           heroImg.style.display = 'none';
-          document.body.classList.remove('hide-navbar-avatar');
+          body.classList.remove('hide-navbar-avatar');
+          if (avatarContainer) avatarContainer.offsetHeight;  // force reflow
         } else {
+          if (heroImg.style.display !== 'block') {
+            console.log("🔼 Scrolled up: Showing hero, hiding navbar avatar");
+          }
           heroImg.style.display = 'block';
-          document.body.classList.add('hide-navbar-avatar');
+          body.classList.add('hide-navbar-avatar');
         }
       }
 
