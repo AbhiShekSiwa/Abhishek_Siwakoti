@@ -301,17 +301,17 @@ show-avatar: true
         const isScrollingRight = e.deltaY > 0;
         const isScrollingLeft = e.deltaY < 0;
   
-        // Only scroll horizontally if not at edge
-        const preventVertical = !((atStart && isScrollingLeft) || (atEnd && isScrollingRight));
+        const preventVerticalScroll = !((atStart && isScrollingLeft) || (atEnd && isScrollingRight));
   
-        if (preventVertical) {
-          e.preventDefault(); // Lock vertical scroll
-          timelineWrapper.scrollLeft += e.deltaY; // Convert to horizontal scroll
-          window.scrollTo(0, timelineWrapper.offsetTop); // Freeze vertical scroll position
+        if (preventVerticalScroll) {
+          e.preventDefault();
+          timelineWrapper.scrollLeft += e.deltaY;
+          window.scrollTo(0, timelineWrapper.offsetTop); // ✅ No behavior argument
         }
       }
     }, { passive: false });
   </script>
+
 
 
 
