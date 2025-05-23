@@ -114,30 +114,30 @@ show-avatar: true
     }
     #timeline-wrapper {
       height: 100vh;
-      overflow-x: scroll;
-      overflow-y: hidden;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      background: #111;
-      scroll-snap-type: x mandatory;
+      width: 100vw;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d); /* match hero background */
     }
     #timeline-scroll {
       display: flex;
       gap: 4rem;
       padding: 4rem;
       width: max-content;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
     }
     .timeline-item {
       flex: 0 0 auto;
       width: 300px;
-      background: #222;
+      background: rgba(255, 255, 255, 0.1); /* subtle transparency */
       color: white;
       border-radius: 10px;
       padding: 2rem;
-      scroll-snap-align: start;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-      transition: transform 0.3s ease;
+      backdrop-filter: blur(8px);
     }
     .timeline-item:hover {
       transform: scale(1.05);
@@ -261,5 +261,28 @@ show-avatar: true
       window.addEventListener('resize', updatePosition);
     });
   </script>
+  
+  <script>
+    const timelineWrapper = document.getElementById('timeline-wrapper');
+    const timelineScroll = document.getElementById('timeline-scroll');
+    const timelineItems = document.querySelectorAll('.timeline-item');
+  
+    let horizontalScroll = 0;
+  
+    window.addEventListener('wheel', function (e) {
+      const wrapperRect = timelineWrapper.getBoundingClientRect();
+      
+      if (wrapperRect.top <= 0 && wrapperRect.bottom > 0) {
+        e.preventDefault();
+        horizontalScroll += e.deltaY;
+        horizontalScroll = Math.max(0, Math.min(horizontalScroll, timelineScroll.scrollWidth - window.innerWidth));
+        timelineScroll.style.transform = `translateX(-${horizontalScroll}px)`;
+        
+        // Lock vertical scroll at top of timeline
+        window.scrollTo(0, timelineWrapper.offsetTop);
+      }
+    }, { passive: false });
+  </script>
+
 </body>
 </html>
