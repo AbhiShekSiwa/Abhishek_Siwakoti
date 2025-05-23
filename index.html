@@ -127,11 +127,11 @@ show-avatar: true
       left: 0;
       transform: translateY(-50%);
       display: flex;
-      padding-left: 0;
-      padding-right: 0;
+      gap: 4rem; /* ✅ adds spacing between items */
+      padding: 0;
+      margin-left: -4rem; /* ✅ cancels first gap to align flush */
       width: max-content;
     }
-    
     .timeline-item {
       flex: 0 0 auto;
       width: 300px;
@@ -141,14 +141,10 @@ show-avatar: true
       padding: 2rem;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(8px);
-      margin-left: 0; /* ✅ key to keeping flush */
-      margin-right: 4rem;
     }
-    
     .timeline-item:first-child {
       margin-left: 0; /* Ensure the first one hugs left */
-    }
-    
+    }    
     .timeline-item:last-child {
       margin-right: 0;
     }
