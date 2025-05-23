@@ -133,10 +133,17 @@ show-avatar: true
     #timeline-inner {
       display: flex;
       gap: 4rem;
-      padding-left: 0; /* remove the gap */
+      padding-left: 0;
+      padding-right: 4rem;
       transform: translateX(0);
       transition: transform 0.3s ease;
     }
+    
+    .timeline-item:first-child {
+      margin-left: 4rem; /* shift first item into view nicely */
+    }
+
+
     .timeline-item {
       flex: 0 0 auto;
       width: 300px;
@@ -296,7 +303,10 @@ show-avatar: true
   window.addEventListener('wheel', function (e) {
     const wrapperRect = timelineWrapper.getBoundingClientRect();
     const inView = wrapperRect.top <= 0 && wrapperRect.bottom > 0;
+    const paddingOffset = 0; // no need to add extra scroll room
     const maxScroll = timelineScroll.scrollWidth - window.innerWidth;
+
+
   
       // Only handle scroll if in view of timeline
     if (inView) {
@@ -311,7 +321,8 @@ show-avatar: true
       e.preventDefault();
       horizontalScroll += e.deltaY;
       horizontalScroll = Math.max(0, Math.min(horizontalScroll, maxScroll));
-     timelineScroll.style.transform = `translateX(-${horizontalScroll}px)`;
+      timelineScroll.style.transform = `translateX(-${horizontalScroll}px)`;
+
 
 
         // Freeze vertical scroll while active
