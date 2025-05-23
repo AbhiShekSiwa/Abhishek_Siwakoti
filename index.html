@@ -304,8 +304,8 @@ show-avatar: true
       const nearTopOfPage = window.scrollY <= timelineWrapper.offsetTop;
   
       if (timelineCentered) {
-        // Allow user to scroll out vertically at the ends, or if nearthe  top
-        if ((atStart && isScrollingUp) || (atEnd && isScrollingDown) || (isScrollingUp && nearTopOfPage)) return;
+        // Allow user to scroll out vertically at the ends, or if near the  top
+        if ((atStart && isScrollingUp) || (atEnd && isScrollingDown) || (atStart && isScrollingUp && nearTopOfPage)) return;
   
         if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
           e.preventDefault();
