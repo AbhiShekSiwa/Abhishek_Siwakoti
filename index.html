@@ -90,25 +90,28 @@ show-avatar: true
 
   <div style="height: 200vh;"></div>
 
-  <script>
+<script>
   document.addEventListener("DOMContentLoaded", () => {
     const heroImg = document.getElementById('hero-photo');
-    const maxScroll = 300;
-    const startSizePx = 300;
+
+    const baseFontSize = 16; // Default 1rem = 16px
+    const startSizeRem = 15.625; // 3.125 * 5
     const endSizeRem = 3.125;
-    const baseFontSize = 16;
+    const maxScrollRem = 15.625;
+    const maxScroll = maxScrollRem * baseFontSize; // scroll distance in px
 
     function updatePosition() {
       const scrollY = window.scrollY;
       const scrollRatio = Math.min(1, scrollY / maxScroll);
 
-      const sizePx = startSizePx - (startSizePx - (endSizeRem * baseFontSize)) * scrollRatio;
-      const sizeRem = sizePx / baseFontSize;
-      heroImg.style.width = `${sizeRem}rem`;
-      heroImg.style.height = `${sizeRem}rem`;
+      const currentSizePx = (startSizeRem * baseFontSize) - ((startSizeRem - endSizeRem) * baseFontSize * scrollRatio);
+      const currentSizeRem = currentSizePx / baseFontSize;
+
+      heroImg.style.width = `${currentSizeRem}rem`;
+      heroImg.style.height = `${currentSizeRem}rem`;
 
       const startTop = window.innerHeight / 2;
-      const endTop = 82;
+      const endTop = 5.125 * baseFontSize; // ~82px
       const startLeft = window.innerWidth * 0.85;
       const endLeft = window.innerWidth / 2;
 
@@ -118,13 +121,14 @@ show-avatar: true
       heroImg.style.top = `${currentTop}px`;
       heroImg.style.left = `${currentLeft}px`;
       heroImg.style.transform = "translate(-50%, -50%)";
-
+    }
 
     updatePosition();
     window.addEventListener('scroll', updatePosition);
     window.addEventListener('resize', updatePosition);
   });
 </script>
+
 
 </body>
 </html>
