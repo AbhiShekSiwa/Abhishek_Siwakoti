@@ -32,10 +32,6 @@ show-avatar: true
       background-color: #005f73;
     }
 
-    body.hide-navbar-avatar .avatar-container {
-      display: none !important;
-    }
-
     section#hero {
       display: flex;
       align-items: center;
@@ -77,7 +73,7 @@ show-avatar: true
   </style>
 </head>
 
-<body class="hide-navbar-avatar">
+<body>
   <!-- HERO SECTION -->
   <section id="hero">
     <h1>Hi, I'm Abhishek Siwakoti</h1>
@@ -97,8 +93,8 @@ show-avatar: true
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const heroImg = document.getElementById('hero-photo');
-    const maxScroll = 240;
-    const startSizePx = 240;
+    const maxScroll = 300;
+    const startSizePx = 300;
     const endSizeRem = 3.125;
     const baseFontSize = 16;
 
@@ -123,20 +119,6 @@ show-avatar: true
       heroImg.style.left = `${currentLeft}px`;
       heroImg.style.transform = "translate(-50%, -50%)";
 
-      // Avatar toggle logic
-      const avatarContainer = document.querySelector('.avatar-container');
-      if (avatarContainer) {
-        if (scrollY > maxScroll) {
-          heroImg.style.display = 'none';
-          document.body.classList.remove('hide-navbar-avatar');
-        } else {
-          heroImg.style.display = 'block';
-          document.body.classList.add('hide-navbar-avatar');
-        }
-      } else {
-        console.warn("⚠️ .avatar-container not found in DOM");
-      }
-    }
 
     updatePosition();
     window.addEventListener('scroll', updatePosition);
