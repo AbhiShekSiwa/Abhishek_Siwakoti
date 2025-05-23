@@ -87,11 +87,21 @@ Plus, if I could bend space and time, I'd go live with raccacoonie.
 
 ## 😻 Meet My Cat
 
-> Life’s better with an aerospace assistant who sheds on your schematics.
+<div style="display: flex; align-items: flex-start; gap: 1.5em; flex-wrap: wrap;">
+  <img src="/assets/img/Garmadon.JPG" alt="Garmadon Buny Kaliflower" 
+       style="max-width: 220px; height: auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.15);" />
 
-**Name:**  Garmadon Buny Kaliflower  
-**Specialty:** Napping through lectures and walking across my keyboard mid-CAD.  
-![My Cat](/assets/img/Garmadon.JPG)
+  <div style="flex: 1; min-width: 250px;">
+    <p style="font-size: 1.05em; line-height: 1.6;">
+      Life’s better with an aerospace assistant who sheds on your schematics.
+    </p>
+    <p style="font-size: 1.05em; line-height: 1.6;">
+      <strong>Name:</strong> Garmadon Buny Kaliflower<br>
+      <strong>Specialty:</strong> Napping through lectures and walking across my keyboard mid-CAD.
+    </p>
+  </div>
+</div>
+
 ---
 
 ## 📬 Let’s Connect
