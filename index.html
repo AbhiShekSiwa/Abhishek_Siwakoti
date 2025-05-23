@@ -88,32 +88,35 @@ show-avatar: false
     <img id="hero-photo" src="{{ site.avatar }}" alt="Abhishek Siwakoti" />
   </section>
 
-  <!-- Fake height to ensure enough scroll space -->
+  <!-- Extra height for full scroll test -->
   <div style="height: 200vh;"></div>
 
-  <!-- JS to shrink and center the image -->
+  <!-- Scroll Behavior Script -->
   <script>
     const heroImg = document.getElementById('hero-photo');
     const maxScroll = 200;
     const startSize = 240;
-    const endSize = 72;
+    const endSize = 60;
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
       const scrollRatio = Math.min(1, scrollY / maxScroll);
-      const size = startSize - (startSize - endSize) * scrollRatio;
 
+      const size = startSize - (startSize - endSize) * scrollRatio;
       heroImg.style.width = `${size}px`;
       heroImg.style.height = `${size}px`;
 
-      // Stay horizontally centered during animation
-      const finalLeft = 50; // % for center
-      const initialLeft = 100; // % for right
-      const currentLeft = initialLeft - (initialLeft - finalLeft) * scrollRatio;
-      const currentTranslate = currentLeft;
+      const startTop = window.innerHeight / 2;
+      const endTop = 16;
+      const currentTop = startTop - (startTop - endTop) * scrollRatio;
 
-      heroImg.style.left = `${currentLeft}%`;
-      heroImg.style.transform = `translate(-${currentTranslate}%, -50%)`;
+      const startLeft = window.innerWidth;
+      const endLeft = window.innerWidth / 2;
+      const currentLeft = startLeft - (startLeft - endLeft) * scrollRatio;
+
+      heroImg.style.top = `${currentTop}px`;
+      heroImg.style.left = `${currentLeft}px`;
+      heroImg.style.transform = "translate(-50%, -50%)";
     });
   </script>
 </body>
