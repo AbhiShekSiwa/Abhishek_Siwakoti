@@ -283,14 +283,13 @@ show-avatar: true
       window.addEventListener('resize', updatePosition);
     });
   </script>
-
+  
   <script>
     const timelineWrapper = document.getElementById('timeline-wrapper');
-    let lockedInTimeline = false;
   
     window.addEventListener('wheel', function (e) {
       const rect = timelineWrapper.getBoundingClientRect();
-      const centerThreshold = window.innerHeight * 0.3;
+      const centerThreshold = window.innerHeight * 0.3; // soft lock zone
   
       const timelineCentered =
         rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
@@ -301,18 +300,12 @@ show-avatar: true
       const isScrollingDown = e.deltaY > 0;
       const isScrollingUp = e.deltaY < 0;
   
-      if (!lockedInTimeline && timelineCentered) {
-        // Only lock when entering from top going down or bottom going up
-        if ((isScrollingDown && rect.top < 0) || (isScrollingUp && rect.bottom > window.innerHeight)) {
-          lockedInTimeline = true;
-        }
-      }
+      // Allow scrolling out of the top even when the timeline is centered
+      const nearTopOfPage = window.scrollY <= timelineWrapper.offsetTop;
   
-      if (lockedInTimeline) {
-        if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) {
-          lockedInTimeline = false; // Unlock when exiting
-          return;
-        }
+      if (timelineCentered) {
+        // Allow user to scroll out vertically at the ends, or if nearthe  top
+        if ((atStart && isScrollingUp) || (atEnd && isScrollingDown) || (isScrollingUp && nearTopOfPage)) return;
   
         if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
           e.preventDefault();
@@ -331,6 +324,7 @@ show-avatar: true
     }, { passive: false });
   </script>
   
+    
 
 
 
