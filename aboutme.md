@@ -22,12 +22,12 @@ Hi! I’m **Abhishek Siwakoti**, a student of Aerospace Engineering with a passi
 🔧 Tools I love: MATLAB, Python, Simulink, SolidWorks, Git, LaTeX
 
 🧠 I geek out about:  
-- The Kármán line (yes, it *is* arbitrary but still cool)  
-- Supersonic shockwaves and Prandtl–Meyer expansions  
-- Lagrange points and how they create "gravitational parking spots"  
-- Thrust vector control in rockets  
-- The elegance of the Breguet range equation  
-- Turbulence... even if no one fully understands it
+  - The Kármán line (yes, it *is* arbitrary but still cool)  
+  - Supersonic shockwaves and Prandtl–Meyer expansions  
+  - Lagrange points and how they create "gravitational parking spots"  
+  - Thrust vector control in rockets  
+  - The elegance of the Breguet range equation  
+  - Turbulence... even if no one fully understands it
 
 ---
 
@@ -47,7 +47,6 @@ What started as helping my mom, fixing things around the house, and launching ma
 
 I’ve built trebuchets that can launch beanbags 50 feet, CAD models that print to spec, and I’m on my way to building a life that can lift others too.
 
-> If it has my name on it, I want it done right — whether it’s a flight sim, a design file, or the code behind this website. I can’t promise perfection, but I can promise I’ll give it everything I’ve got.
 
 Every class, every late night, every build that fails forward — it all comes back to this:  
 **Make something better than what you were handed.**
@@ -56,12 +55,12 @@ Every class, every late night, every build that fails forward — it all comes b
 
 ## 🧠 My Engineering Philosophy
 
-> "*Test it. Break it. Learn from it. Rebuild better.*" — me, after many late nights.
+> If it has my name on it, I want it done right — whether it’s a flight sim, a design file, or the code behind this website. I can’t promise perfection, but I can promise I’ll give it everything I’ve got.
 
 I believe in:
-- Simplicity that scales
-- Documentation that lives
-- Code that doesn’t bite back
+  - Simplicity that scales
+  - Documentation that lives
+  - Code that doesn’t bite back
 
 ---
 ## 📚 Fun Engineering Stats
