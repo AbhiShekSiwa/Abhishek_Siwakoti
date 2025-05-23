@@ -303,16 +303,19 @@ show-avatar: true
   
       const isScrollingDown = e.deltaY > 0;
       const isScrollingUp = e.deltaY < 0;
+
+      const pastTimelineTop = rect.bottom < 0;
+      const pastTimelineBottom = rect.top > window.innerHeight;
   
-      const nearTopOfPage = window.scrollY < 50;
+      // ✅ Allow scroll out when completely outside
+      if (pastTimelineTop && isScrollingUp) return;
+      if (pastTimelineBottom && isScrollingDown) return;
   
       if (timelineCentered) {
         // ✅ Allow user to scroll out normally at edges
-        if ((atStart && isScrollingUp && nearTopOfPage) || (atEnd && isScrollingDown)) {
+        if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) {
           return; // let vertical scroll resume
         }
-  
-        // ✅ Only intercept vertical scroll when dominant
         if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
           e.preventDefault();
           timelineWrapper.scrollBy({
@@ -320,7 +323,7 @@ show-avatar: true
             behavior: 'smooth'
           });
   
-          // ✅ Snap to top of timeline only when scrolling into center zone
+          // ✅ Snap to top of timeline only when scrolling into the center zone
           window.scrollTo({
             top: timelineWrapper.offsetTop,
             behavior: 'smooth'
