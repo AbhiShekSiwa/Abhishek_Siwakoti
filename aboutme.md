@@ -16,7 +16,9 @@ Hi! I’m **Abhishek Siwakoti**, a student of Aerospace Engineering with a passi
 
 **Quick intro snapshot**:  
 🛰️ School: University of Colorado Boulder  
+
 🚀 Focus areas: Orbital Dynamics, Aircraft Stability, Aerodynamics, and Thermodynamics  
+
 🔧 Tools I love: MATLAB, Python, Simulink, SolidWorks, Git, LaTeX
 
 🧠 I geek out about:  
@@ -88,9 +90,7 @@ You can replace this with your favorite movie or fun metaphor for your life/jour
 
 **Name:** `{{ Garmadon Buny Kaliflower}}`  
 **Specialty:** Napping through lectures and walking across my keyboard mid-CAD.  
-![My Cat](/assets/img/crepe.jpg)
-*Yes, you can replace that image link with your own.*
-
+![My Cat](/assets/img/Garmadon.JPG)
 ---
 
 ## 📬 Let’s Connect
