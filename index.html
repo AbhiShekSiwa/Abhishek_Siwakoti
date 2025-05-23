@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Welcome
-show-avatar: false
+show-avatar: true
 ---
 
 <!DOCTYPE html>
@@ -30,6 +30,10 @@ show-avatar: false
 
     .btn:hover {
       background-color: #005f73;
+    }
+
+    .hide-navbar-avatar .avatar-container {
+      display: none !important;
     }
 
     section#hero {
@@ -73,7 +77,7 @@ show-avatar: false
   </style>
 </head>
 
-<body>
+<body class="hide-navbar-avatar">
   <!-- HERO SECTION -->
   <section id="hero">
     <h1>Hi, I'm Abhishek Siwakoti</h1>
@@ -88,44 +92,42 @@ show-avatar: false
     <img id="hero-photo" src="{{ site.avatar }}" alt="Abhishek Siwakoti" />
   </section>
 
-  <!-- Placeholder height for scrolling -->
   <div style="height: 200vh;"></div>
 
-  <!-- Dynamic Scroll Logic -->
   <script>
     const heroImg = document.getElementById('hero-photo');
-    const maxScroll = 200;
+    const scrollThreshold = 200;
     const startSize = 240;
     const endSize = 50;
 
-    let endTop = 80;  // default guess
-    let endLeft = window.innerWidth / 2;
-
-    window.addEventListener("load", () => {
-      const container = document.querySelector(".avatar-container");
-      if (container) {
-        const rect = container.getBoundingClientRect();
-        endTop = rect.top + window.scrollY + (rect.height / 2);
-        endLeft = rect.left + (rect.width / 2);
-      }
-    });
-
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
-      const scrollRatio = Math.min(1, scrollY / maxScroll);
+      const scrollRatio = Math.min(1, scrollY / scrollThreshold);
 
       const size = startSize - (startSize - endSize) * scrollRatio;
       heroImg.style.width = `${size}px`;
       heroImg.style.height = `${size}px`;
 
       const startTop = window.innerHeight / 2;
+      const endTop = 82;
       const startLeft = window.innerWidth;
+      const endLeft = window.innerWidth / 2;
+
       const currentTop = startTop - (startTop - endTop) * scrollRatio;
       const currentLeft = startLeft - (startLeft - endLeft) * scrollRatio;
 
       heroImg.style.top = `${currentTop}px`;
       heroImg.style.left = `${currentLeft}px`;
       heroImg.style.transform = "translate(-50%, -50%)";
+
+      // Toggle avatars
+      if (scrollY > scrollThreshold) {
+        heroImg.style.display = 'none';
+        document.body.classList.remove('hide-navbar-avatar');
+      } else {
+        heroImg.style.display = 'block';
+        document.body.classList.add('hide-navbar-avatar');
+      }
     });
   </script>
 </body>
