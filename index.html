@@ -289,32 +289,38 @@ show-avatar: true
   
     window.addEventListener('wheel', function (e) {
       const rect = timelineWrapper.getBoundingClientRect();
-      const centerThreshold = window.innerHeight * 0.3; // soft lock zone
+      const centerThreshold = window.innerHeight * 0.3;
   
       const timelineCentered =
         rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
   
-     const atStart = Math.abs(timelineWrapper.scrollLeft) < 2;
-      const atEnd = timelineWrapper.scrollLeft >= (timelineWrapper.scrollWidth - timelineWrapper.clientWidth);
+      const scrollLeft = timelineWrapper.scrollLeft;
+      const scrollMax = timelineWrapper.scrollWidth - timelineWrapper.clientWidth;
+  
+      // Add tolerance buffer for float precision
+      const atStart = scrollLeft < 2;
+      const atEnd = scrollLeft >= scrollMax - 2;
   
       const isScrollingDown = e.deltaY > 0;
       const isScrollingUp = e.deltaY < 0;
   
-      // Allow scrolling out of the top even when the timeline is centered
-      const nearTopOfPage = window.scrollY <= timelineWrapper.offsetTop;
+      const nearTopOfPage = window.scrollY < 50;
   
       if (timelineCentered) {
-        // Allow user to scroll out vertically at the ends, or if near the  top
-        if ((atStart && isScrollingUp) || (atEnd && isScrollingDown) || (atStart && isScrollingUp && nearTopOfPage)) return;
+        // ✅ Allow user to scroll out normally at edges
+        if ((atStart && isScrollingUp && nearTopOfPage) || (atEnd && isScrollingDown)) {
+          return; // let vertical scroll resume
+        }
   
+        // ✅ Only intercept vertical scroll when dominant
         if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
           e.preventDefault();
-  
           timelineWrapper.scrollBy({
             left: e.deltaY,
             behavior: 'smooth'
           });
   
+          // ✅ Snap to top of timeline only when scrolling into center zone
           window.scrollTo({
             top: timelineWrapper.offsetTop,
             behavior: 'smooth'
@@ -323,6 +329,7 @@ show-avatar: true
       }
     }, { passive: false });
   </script>
+
   
     
 
