@@ -284,33 +284,21 @@ show-avatar: true
     });
   </script>
   
-  <script>
-    const timelineWrapper = document.getElementById('timeline-wrapper');
-  
-    window.addEventListener('wheel', function (e) {
-      const wrapperRect = timelineWrapper.getBoundingClientRect();
-      const inView = wrapperRect.top <= 0 && wrapperRect.bottom > window.innerHeight;
-  
-      const maxScrollLeft = timelineWrapper.scrollWidth - timelineWrapper.clientWidth;
-      const currentScroll = timelineWrapper.scrollLeft;
-  
-      const atStart = currentScroll <= 0;
-      const atEnd = currentScroll >= maxScrollLeft;
-  
-      if (inView) {
-        const isScrollingRight = e.deltaY > 0;
-        const isScrollingLeft = e.deltaY < 0;
-  
-        const preventVerticalScroll = !((atStart && isScrollingLeft) || (atEnd && isScrollingRight));
-  
-        if (preventVerticalScroll) {
-          e.preventDefault();
-          timelineWrapper.scrollLeft += e.deltaY;
-          window.scrollTo(0, timelineWrapper.offsetTop); // ✅ No behavior argument
-        }
-      }
-    }, { passive: false });
-  </script>
+<script>
+  const timelineWrapper = document.getElementById('timeline-wrapper');
+
+  window.addEventListener('wheel', function (e) {
+    const rect = timelineWrapper.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+    if (inView) {
+      e.preventDefault(); // Fully lock vertical scrolling
+      timelineWrapper.scrollLeft += e.deltaY; // Convert vertical scroll to horizontal
+      window.scrollTo(0, timelineWrapper.offsetTop); // Lock the scroll position to the timeline's top
+    }
+  }, { passive: false });
+</script>
+
 
 
 
