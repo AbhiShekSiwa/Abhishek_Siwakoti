@@ -123,8 +123,11 @@ show-avatar: true
       display: flex;
       align-items: center;
       background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      scrollbar-width: none; /* Firefox */
     }
-    
+    #timeline-wrapper::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Edge */
+    }
     #timeline-scroll {
       display: flex;
       gap: 4rem;
@@ -280,19 +283,30 @@ show-avatar: true
     });
   </script>
   
-  <script>
-    const timelineWrapper = document.getElementById('timeline-wrapper');
-  
-    window.addEventListener('wheel', function (e) {
-      const wrapperRect = timelineWrapper.getBoundingClientRect();
-      const inView = wrapperRect.top <= 0 && wrapperRect.bottom > window.innerHeight * 0.5;
-  
-      if (inView) {
-        e.preventDefault();
-        timelineWrapper.scrollLeft += e.deltaY;
+<script>
+
+  window.addEventListener('wheel', function (e) {
+    const wrapperRect = timelineWrapper.getBoundingClientRect();
+    const inView = wrapperRect.top <= 0 && wrapperRect.bottom > window.innerHeight * 0.5;
+
+    const maxScrollLeft = timelineWrapper.scrollWidth - timelineWrapper.clientWidth;
+    const atStart = timelineWrapper.scrollLeft <= 0;
+    const atEnd = timelineWrapper.scrollLeft >= maxScrollLeft;
+
+    if (inView) {
+      const isScrollingRight = e.deltaY > 0;
+      const isScrollingLeft = e.deltaY < 0;
+
+      const preventDefaultScroll = !((atStart && isScrollingLeft) || (atEnd && isScrollingRight));
+
+      if (preventDefaultScroll) {
+        e.preventDefault(); // Lock vertical scroll
+        timelineWrapper.scrollLeft += e.deltaY; // Map vertical to horizontal
       }
-    }, { passive: false });
-  </script>
+    }
+  }, { passive: false });
+</script>
+
 
 
 
