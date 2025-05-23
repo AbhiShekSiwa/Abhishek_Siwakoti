@@ -90,7 +90,7 @@ Plus, if I could bend space and time, I'd go live with raccacoonie.
   <div style="text-align: center;">
     <img id="garmadon-img" src="/assets/img/MeanGarmadon.jpeg" alt="Garmadon Buny Kaliflower" 
          style="max-width: 220px; height: auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.15); cursor: pointer;" />
-    <p style="font-size: 0.9em; margin-top: 0.5em; color: #666;">(Psst… try clicking him a few times 👀)</p>
+    <p style="font-size: 0.9em; margin-top: 0.5em; color: #666;">(Psst… try clicking her a few times 👀)</p>
   </div>
 
   <div style="flex: 1; min-width: 250px;">
