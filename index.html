@@ -119,17 +119,21 @@ show-avatar: true
       width: 100vw;
       overflow: hidden;
       background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
+      position: relative;
     }
     
     #timeline-scroll {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
       display: flex;
       gap: 4rem;
-      padding: 4rem 2rem;
-      transition: transform 0.3s ease;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      width: max-content;
     }
+
 
 
     .timeline-item {
