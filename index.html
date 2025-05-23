@@ -53,9 +53,9 @@ show-avatar: false
 
     #hero-photo {
       position: fixed;
-      top: 40px;
+      top: 50%;
       left: 100%;
-      transform: translateX(-100%);
+      transform: translate(-100%, -50%);
       z-index: 1000;
       width: 240px;
       height: 240px;
@@ -88,7 +88,10 @@ show-avatar: false
     <img id="hero-photo" src="{{ site.avatar }}" alt="Abhishek Siwakoti" />
   </section>
 
-  <!-- JS to shrink and move image to center -->
+  <!-- Fake height to ensure enough scroll space -->
+  <div style="height: 200vh;"></div>
+
+  <!-- JS to shrink and center the image -->
   <script>
     const heroImg = document.getElementById('hero-photo');
     const maxScroll = 200;
@@ -102,8 +105,15 @@ show-avatar: false
 
       heroImg.style.width = `${size}px`;
       heroImg.style.height = `${size}px`;
-      heroImg.style.left = `${100 - 50 * scrollRatio}%`;
-      heroImg.style.transform = `translateX(-${100 - 50 * scrollRatio}%)`;
+
+      // Stay horizontally centered during animation
+      const finalLeft = 50; // % for center
+      const initialLeft = 100; // % for right
+      const currentLeft = initialLeft - (initialLeft - finalLeft) * scrollRatio;
+      const currentTranslate = currentLeft;
+
+      heroImg.style.left = `${currentLeft}%`;
+      heroImg.style.transform = `translate(-${currentTranslate}%, -50%)`;
     });
   </script>
 </body>
