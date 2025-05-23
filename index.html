@@ -88,32 +88,39 @@ show-avatar: false
     <img id="hero-photo" src="{{ site.avatar }}" alt="Abhishek Siwakoti" />
   </section>
 
-  <!-- Extra height to allow full scroll effect -->
+  <!-- Placeholder height for scrolling -->
   <div style="height: 200vh;"></div>
 
-  <!-- Scroll Behavior Script -->
+  <!-- Dynamic Scroll Logic -->
   <script>
     const heroImg = document.getElementById('hero-photo');
     const maxScroll = 200;
-    const startSize = 500;
-    const endSize = 100;
+    const startSize = 240;
+    const endSize = 50;
 
-    window.addEventListener('scroll', () => {
+    let endTop = 80;  // default guess
+    let endLeft = window.innerWidth / 2;
+
+    window.addEventListener("load", () => {
+      const container = document.querySelector(".avatar-container");
+      if (container) {
+        const rect = container.getBoundingClientRect();
+        endTop = rect.top + window.scrollY + (rect.height / 2);
+        endLeft = rect.left + (rect.width / 2);
+      }
+    });
+
+    window.addEventListener("scroll", () => {
       const scrollY = window.scrollY;
       const scrollRatio = Math.min(1, scrollY / maxScroll);
 
-      // Shrink image size
       const size = startSize - (startSize - endSize) * scrollRatio;
       heroImg.style.width = `${size}px`;
       heroImg.style.height = `${size}px`;
 
-      // Animate to .avatar-container position (top: ~calc from bottom: -1.5rem)
       const startTop = window.innerHeight / 2;
-      const endTop = 80; // estimated to match avatar-container below navbar
-      const currentTop = startTop - (startTop - endTop) * scrollRatio;
-
       const startLeft = window.innerWidth;
-      const endLeft = window.innerWidth / 2;
+      const currentTop = startTop - (startTop - endTop) * scrollRatio;
       const currentLeft = startLeft - (startLeft - endLeft) * scrollRatio;
 
       heroImg.style.top = `${currentTop}px`;
