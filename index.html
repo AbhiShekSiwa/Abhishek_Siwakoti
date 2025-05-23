@@ -286,10 +286,23 @@ show-avatar: true
   
   <script>
     const timelineWrapper = document.getElementById('timeline-wrapper');
+    let scrollVelocity = 0;
+    let isAnimating = false;
+  
+    function animateScroll() {
+      if (Math.abs(scrollVelocity) < 0.1) {
+        isAnimating = false;
+        return;
+      }
+  
+      timelineWrapper.scrollLeft += scrollVelocity;
+      scrollVelocity *= 0.85; // Smooth decay
+      requestAnimationFrame(animateScroll);
+    }
   
     window.addEventListener('wheel', function (e) {
       const rect = timelineWrapper.getBoundingClientRect();
-      const centerThreshold = window.innerHeight * 0.5; // soft lock zone
+      const centerThreshold = window.innerHeight * 0.5;
   
       const timelineCentered =
         rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
@@ -301,16 +314,15 @@ show-avatar: true
       const isScrollingUp = e.deltaY < 0;
   
       if (timelineCentered) {
-        // Allow user to scroll out vertically at the ends
         if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) return;
   
         if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
           e.preventDefault();
-  
-          timelineWrapper.scrollBy({
-            left: e.deltaY,
-            behavior: 'smooth'
-          });
+          scrollVelocity += e.deltaY * 0.5; // Add to velocity
+          if (!isAnimating) {
+            isAnimating = true;
+            requestAnimationFrame(animateScroll);
+          }
   
           window.scrollTo({
             top: timelineWrapper.offsetTop,
