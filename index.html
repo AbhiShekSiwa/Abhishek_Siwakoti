@@ -316,11 +316,13 @@ show-avatar: true
         // Allow user to scroll out vertically at the ends
         if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) return;
   
-        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        // Combine deltaY and deltaX into one directional scroll
+        const combinedDelta = e.deltaY + e.deltaX;
+  
+        if (Math.abs(combinedDelta) > 0) {
           e.preventDefault();
   
-          // Smooth scrolling: inject momentum
-          scrollVelocity += e.deltaY * 0.5;
+          scrollVelocity += combinedDelta * 0.5;
           if (!isScrolling) {
             isScrolling = true;
             requestAnimationFrame(smoothScrollStep);
@@ -335,6 +337,7 @@ show-avatar: true
       }
     }, { passive: false });
   </script>
+
 
 
 
