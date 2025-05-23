@@ -114,37 +114,39 @@ show-avatar: true
       transition: opacity 0.2s ease, transform 0.2s ease;
       z-index: 1500;
     }
-#timeline-wrapper {
-  height: 100vh;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  scroll-snap-type: x mandatory;
-}
-
-#timeline-scroll {
-  display: flex;
-  gap: 4rem;
-  padding: 4rem;
-  width: max-content;
-}
-
-.timeline-item {
-  flex: 0 0 auto;
-  width: 300px;
-  background: #222;
-  color: white;
-  border-radius: 10px;
-  padding: 2rem;
-  scroll-snap-align: start;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease;
-}
-
-.timeline-item:hover {
-  transform: scale(1.05);
+    #timeline-wrapper {
+      height: 100vh;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      scroll-snap-type: x mandatory;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    }
+    
+    #timeline-scroll {
+      display: flex;
+      gap: 4rem;
+      padding: 4rem;
+    }
+    
+    .timeline-item {
+      flex: 0 0 auto;
+      width: 300px;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      scroll-snap-align: start;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      transition: transform 0.3s ease;
+    }
+    
+    .timeline-item:hover {
+      transform: scale(1.05);
+    }
 }
 
   </style>
@@ -186,6 +188,18 @@ show-avatar: true
     <div class="timeline-item">
       <h2>2024</h2>
       <p>Refined my portfolio and launched my website.</p>
+    </div>
+    <div class="timeline-item">
+      <h2>2025</h2>
+      <p>To Be Determined.</p>
+    </div>
+    <div class="timeline-item">
+      <h2>2026</h2>
+      <p>To Be Determined.</p>
+    </div>
+    <div class="timeline-item">
+      <h2>2027</h2>
+      <p>Graduated with an Aerospace Engineering degree, building toward an orbital mechanics career.</p>
     </div>
   </div>
 </section>
@@ -266,45 +280,21 @@ show-avatar: true
     });
   </script>
   
-<script>
-  const timelineWrapper = document.getElementById('timeline-wrapper');
-  const timelineScroll = document.getElementById('timeline-inner');
+  <script>
+    const timelineWrapper = document.getElementById('timeline-wrapper');
   
-  let horizontalScroll = 0;
+    window.addEventListener('wheel', function (e) {
+      const wrapperRect = timelineWrapper.getBoundingClientRect();
+      const inView = wrapperRect.top <= 0 && wrapperRect.bottom > window.innerHeight * 0.5;
   
-  window.addEventListener('wheel', function (e) {
-    const wrapperRect = timelineWrapper.getBoundingClientRect();
-    const inView = wrapperRect.top <= 0 && wrapperRect.bottom > 0;
-    const paddingOffset = 0; // no need to add extra scroll room
-    const maxScroll = timelineScroll.scrollWidth - window.innerWidth;
-
-
-  
-      // Only handle scroll if in view of timeline
-    if (inView) {
-    const atStart = horizontalScroll <= 0;
-    const atEnd = horizontalScroll >= maxScroll;
-
-    const isScrollingRight = e.deltaY > 0;
-    const isScrollingLeft = e.deltaY < 0;
-
-      // Prevent scrolling only in the middle zone
-    if (!(atStart && isScrollingLeft) && !(atEnd && isScrollingRight)) {
-      e.preventDefault();
-      horizontalScroll += e.deltaY;
-      horizontalScroll = Math.max(0, Math.min(horizontalScroll, maxScroll));
-      timelineScroll.style.transform = `translateX(-${horizontalScroll}px)`;
-
-
-
-        // Freeze vertical scroll while active
-       if (!(atStart || atEnd)) {
-          window.scrollTo(0, timelineWrapper.offsetTop);
-        }
+      if (inView) {
+        e.preventDefault();
+        timelineWrapper.scrollLeft += e.deltaY;
       }
-    }
-  }, { passive: false });
-</script>
+    }, { passive: false });
+  </script>
+
+
 
 
 </body>
