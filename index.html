@@ -286,22 +286,21 @@ show-avatar: true
 
   <script>
     const timelineWrapper = document.getElementById('timeline-wrapper');
-    
     let hasSnapped = false;
-
+  
     window.addEventListener('wheel', function (e) {
       const rect = timelineWrapper.getBoundingClientRect();
-      const centerThreshold = window.innerHeight * 0.5;
-    
+      const centerThreshold = window.innerHeight * 0.5; // ✅ define it
+  
       const timelineCentered =
         rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
-    
+  
       const atStart = timelineWrapper.scrollLeft <= 0;
       const atEnd = timelineWrapper.scrollLeft >= (timelineWrapper.scrollWidth - timelineWrapper.clientWidth);
-    
+  
       const isScrollingDown = e.deltaY > 0;
       const isScrollingUp = e.deltaY < 0;
-    
+  
       if (timelineCentered) {
         if (!hasSnapped) {
           hasSnapped = true;
@@ -310,20 +309,25 @@ show-avatar: true
             behavior: 'smooth'
           });
         }
-    
+  
         if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) {
-          hasSnapped = false; // allow snapping again
-          return; // let vertical scroll resume
+          hasSnapped = false;
+          return; // allow vertical scroll at boundaries
         }
+  
         if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
           e.preventDefault();
-          timelineWrapper.scrollLeft += e.deltaY * 0.5;
+          timelineWrapper.scrollBy({
+            left: e.deltaY * 0.5,
+            behavior: 'smooth' // ✅ smoother feel
+          });
         }
       } else {
-        hasSnapped = false; // Reset once you scroll out
+        hasSnapped = false; // reset snap flag if not centered
       }
     }, { passive: false });
   </script>
+
 
 
 
