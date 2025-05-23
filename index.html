@@ -112,6 +112,37 @@ show-avatar: true
       transition: opacity 0.2s ease, transform 0.2s ease;
       z-index: 1500;
     }
+    #timeline-wrapper {
+      height: 100vh;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      background: #111;
+      scroll-snap-type: x mandatory;
+    }
+    #timeline-scroll {
+      display: flex;
+      gap: 4rem;
+      padding: 4rem;
+      width: max-content;
+    }
+    .timeline-item {
+      flex: 0 0 auto;
+      width: 300px;
+      background: #222;
+      color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      scroll-snap-align: start;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+    .timeline-item:hover {
+      transform: scale(1.05);
+    }
+    
 
   </style>
 </head>
@@ -132,6 +163,28 @@ show-avatar: true
     <img id="hero-photo" src="{{ site.avatar }}" alt="Abhishek Avatar" />
     <img id="hero-logo" src="/assets/img/Logo.png" alt="Abhishek Logo" />
     <div id="boom-flash"></div> 
+  </section>
+
+
+  <section id="timeline-wrapper">
+    <div id="timeline-scroll">
+      <div class="timeline-item">
+        <h2>2021</h2>
+        <p>Started at CU Boulder. Learned MATLAB, SolidWorks, and made my first rocket sim!</p>
+      </div>
+      <div class="timeline-item">
+        <h2>2022</h2>
+        <p>Led boost-glide vehicle lab. CAD, flight dynamics, and team coordination.</p>
+      </div>
+      <div class="timeline-item">
+        <h2>2023</h2>
+        <p>Explored VR simulators, built dynamic models, and took a deep dive into control systems.</p>
+      </div>
+      <div class="timeline-item">
+        <h2>2024</h2>
+        <p>Refined my portfolio and launched my website.</p>
+      </div>
+    </div>
   </section>
 
   <div style="height: 200vh;"></div>
