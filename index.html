@@ -39,7 +39,7 @@ title: Welcome
       right: 20px;
       border-radius: 50%;
       z-index: 1100;
-      pointer-events: none;
+      display: none;
       transition: opacity 0.3s ease;
     }
 
@@ -94,23 +94,25 @@ title: Welcome
     </div>
   </section>
 
-  <!-- Optional: Navbar Avatar (if also shown elsewhere) -->
-  <img class="nav-avatar" src="{{ site.avatar }}" alt="Avatar" />
+  <!-- Navbar Avatar (initially hidden) -->
+  <img id="nav-avatar" class="nav-avatar" src="{{ site.avatar }}" alt="Avatar" />
 
-  <!-- JS for Scroll Shrink -->
+  <!-- Scroll Shrink Logic -->
   <script>
     const heroImg = document.getElementById('hero-photo');
+    const navImg = document.getElementById('nav-avatar');
     const navbarThreshold = 200;
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
 
       if (scrollY > navbarThreshold) {
-        heroImg.style.width = '40px';
-        heroImg.style.height = '40px';
-        heroImg.style.top = '20px';
-        heroImg.style.right = '20px';
+        heroImg.style.display = 'none';
+        navImg.style.display = 'block';
       } else {
+        heroImg.style.display = 'block';
+        navImg.style.display = 'none';
+
         const scale = 1 - (scrollY / navbarThreshold) * 0.8;
         const size = 200 * scale;
         const offset = 100 - (scrollY / navbarThreshold) * 80;
