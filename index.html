@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: Welcome
 ---
 
@@ -31,24 +31,13 @@ title: Welcome
       background-color: #005f73;
     }
 
-    .nav-avatar {
-      width: 40px;
-      height: 40px;
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      border-radius: 50%;
-      z-index: 1100;
-      display: none;
-      transition: opacity 0.3s ease;
-    }
-
     section#hero {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      flex-direction: column;
       padding: 4em 2em;
-      flex-wrap: wrap;
+      text-align: center;
     }
 
     section#hero h1 {
@@ -57,17 +46,26 @@ title: Welcome
 
     section#hero p {
       font-size: 1.3em;
-      max-width: 600px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    #hero-photo {
+      position: fixed;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
     }
 
     @media (max-width: 768px) {
-      section#hero {
-        flex-direction: column;
-        text-align: center;
-      }
-
       #hero-photo {
-        position: static !important;
+        position: static;
+        transform: none;
         margin: 2em auto 0 auto;
       }
     }
@@ -77,51 +75,32 @@ title: Welcome
 <body>
   <!-- HERO SECTION -->
   <section id="hero">
-    <div>
-      <h1>Hi, I'm Abhishek Siwakoti</h1>
-      <p>
-        Aerospace student, designer, and builder of really cool things — from control systems to cat-powered simulations.
-      </p>
-      <div style="margin-top: 2em;">
-        <a href="/portfolio/" class="btn">View Projects</a>
-        <a href="/resume/" class="btn">Resume</a>
-        <a href="/contactme/" class="btn">Contact Me</a>
-      </div>
+    <h1>Hi, I'm Abhishek Siwakoti</h1>
+    <p>
+      Aerospace student, designer, and builder of really cool things — from control systems to cat-powered simulations.
+    </p>
+    <div style="margin-top: 2em;">
+      <a href="/portfolio/" class="btn">View Projects</a>
+      <a href="/resume/" class="btn">Resume</a>
+      <a href="/contactme/" class="btn">Contact Me</a>
     </div>
-    <div style="position: relative;">
-      <img id="hero-photo" src="{{ site.avatar }}"
-           style="width: 200px; height: 200px; border-radius: 50%; transition: all 0.3s ease; position: fixed; top: 100px; right: 100px; z-index: 1000;" />
-    </div>
+    <img id="hero-photo" src="{{ site.avatar }}" alt="Abhishek Siwakoti" />
   </section>
 
-  <!-- Navbar Avatar (initially hidden) -->
-  <img id="nav-avatar" class="nav-avatar" src="{{ site.avatar }}" alt="Avatar" />
-
-  <!-- Scroll Shrink Logic -->
+  <!-- JS to Shrink in Place -->
   <script>
     const heroImg = document.getElementById('hero-photo');
-    const navImg = document.getElementById('nav-avatar');
-    const navbarThreshold = 200;
+    const maxScroll = 200;
+    const startSize = 240;
+    const endSize = 72;
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
+      const scale = Math.max(endSize / startSize, 1 - (scrollY / maxScroll));
+      const size = startSize * scale;
 
-      if (scrollY > navbarThreshold) {
-        heroImg.style.display = 'none';
-        navImg.style.display = 'block';
-      } else {
-        heroImg.style.display = 'block';
-        navImg.style.display = 'none';
-
-        const scale = 1 - (scrollY / navbarThreshold) * 0.8;
-        const size = 200 * scale;
-        const offset = 100 - (scrollY / navbarThreshold) * 80;
-
-        heroImg.style.width = `${size}px`;
-        heroImg.style.height = `${size}px`;
-        heroImg.style.top = `${offset}px`;
-        heroImg.style.right = `${offset}px`;
-      }
+      heroImg.style.width = `${size}px`;
+      heroImg.style.height = `${size}px`;
     });
   </script>
 </body>
