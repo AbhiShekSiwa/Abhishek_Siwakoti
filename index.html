@@ -291,6 +291,7 @@ show-avatar: true
     window.addEventListener('wheel', function (e) {
       const rect = timelineWrapper.getBoundingClientRect();
       const centerThreshold = window.innerHeight * 0.5;
+  
       const timelineCentered =
         rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
   
@@ -301,21 +302,22 @@ show-avatar: true
       const isScrollingUp = e.deltaY < 0;
   
       if (timelineCentered) {
-        // Snap only the first time on entry
         if (!hasSnapped) {
           hasSnapped = true;
           window.scrollTo({
             top: timelineWrapper.offsetTop,
             behavior: 'smooth'
           });
-          return; // wait for snap before processing scroll
+          return;
         }
   
+        // ✅ Let vertical scroll resume if at start or end
         if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) {
-          hasSnapped = false; // allow re-snap when re-entering
-          return; // let vertical scroll resume at boundaries
+          hasSnapped = false;
+          return; // Don't block scroll here — allow escape
         }
   
+        // ✅ Smooth horizontal scrolling
         if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
           e.preventDefault();
           timelineWrapper.scrollBy({
@@ -324,16 +326,10 @@ show-avatar: true
           });
         }
       } else {
-        hasSnapped = false; // reset snap when outside center
+        hasSnapped = false;
       }
     }, { passive: false });
   </script>
-
-
-
-
-
-
 
 </body>
 </html>
