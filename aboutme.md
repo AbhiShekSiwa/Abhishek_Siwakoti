@@ -88,7 +88,7 @@ You can replace this with your favorite movie or fun metaphor for your life/jour
 
 > Life’s better with an aerospace assistant who sheds on your schematics.
 
-**Name:** `{{ Garmadon Buny Kaliflower}}`  
+**Name:**  Garmadon Buny Kaliflower  
 **Specialty:** Napping through lectures and walking across my keyboard mid-CAD.  
 ![My Cat](/assets/img/Garmadon.JPG)
 ---
