@@ -21,9 +21,7 @@ author: Abhishek Siwakoti
 
 navbar-links:
   About Me: "aboutme"
-  Resources:
-    - Resume: "resume"
-   # - Tools and Skills: "TandS"
+  Projects: "portfolio"
   Blog: "blog"
 
 ################
