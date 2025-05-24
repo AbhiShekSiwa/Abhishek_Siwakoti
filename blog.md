@@ -63,22 +63,26 @@ permalink: /blog/
     text-decoration: none;
   }
   /* Lighten tags */
-a.post-tag,
-.post-meta a {
-  color: #ffd6f6 !important; /* light pink/purple tone */
+/* Lighten tags and metadata */
+.post-meta a,
+.post-meta span,
+a.post-tag {
+  color: #ffc6ff !important;
+  font-weight: 500;
 }
 
-/* Lighten the "Read More" link */
-a.btn.btn-primary {
-  background-color: rgba(255, 255, 255, 0.15);
-  color: #ffccff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+/* Lighten and style the Read More button */
+a.btn.btn-primary,
+a.btn {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffe0ff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
   transition: background 0.3s ease;
 }
 
-a.btn.btn-primary:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-  color: #ffffff;
+a.btn.btn-primary:hover,
+a.btn:hover {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
 }
-
 </style>
