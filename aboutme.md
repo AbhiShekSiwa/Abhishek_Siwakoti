@@ -4,6 +4,54 @@ title: About Me
 subtitle: The Aerospace Dreamer Who Builds, Breaks, and Rebuilds
 permalink: /aboutme/
 ---
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #004d40, #00796b, #48a999); /* Teal/green tone */
+    color: white;
+  }
+
+  .about-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    padding: 4rem 2rem;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .about-container h1, h2, h3 {
+    color: #ffffff;
+  }
+
+  .about-container a {
+    color: #ffee58;
+    text-decoration: underline;
+  }
+
+  .box-success {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .box-warning {
+    background: rgba(255, 255, 255, 0.10);
+    padding: 1rem;
+    border-left: 5px solid #ffee58;
+    border-radius: 4px;
+    margin: 1rem 0;
+  }
+</style>
+
+<div class="about-container">
 
 {: .box-success}
 Hey there — welcome to my digital corner of the universe. This page is where you get to learn a bit more about *who I am*, *what I care about*, and *why aerospace isn't just my major — it's my mission*.
@@ -131,3 +179,5 @@ Got a project, a question, or just want to talk rockets and ramen?
 
 {: .box-note}
 *Pro tip:* If you made it this far, we should totally be working on a mission together someday.
+
+</div>
