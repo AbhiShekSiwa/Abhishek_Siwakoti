@@ -118,26 +118,21 @@ show-avatar: true
       height: 100vh;
       overflow-x: auto;
       overflow-y: hidden;
+      white-space: nowrap;
       scroll-snap-type: x mandatory;
       display: flex;
-      justify-content: center;
+      align-items: center;
       background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-      scrollbar-width: none;
+      scrollbar-width: none; /* Firefox */
       scroll-behavior: smooth;
     }
-    
     #timeline-wrapper::-webkit-scrollbar {
-      display: none;
+      display: none; /* Chrome, Safari, Edge */
     }
-    
     #timeline-scroll {
       display: flex;
       gap: 4rem;
       padding: 4rem;
-      max-width: 90vw; /* Viewport width limit */
-      width: 100%;
-      margin: 0 auto;
-      overflow: hidden;
     }
     .timeline-item {
       flex: 0 0 auto;
