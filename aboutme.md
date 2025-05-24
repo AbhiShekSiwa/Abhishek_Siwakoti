@@ -36,7 +36,7 @@ permalink: /aboutme/
     width: 100%;
     border-collapse: collapse;
     margin: 1.5rem 0;
-    background: rgba(255, 255, 255, 0.1);
+    background: none;
   }
 
   th, td {
@@ -44,7 +44,11 @@ permalink: /aboutme/
     border: 1px solid rgba(255, 255, 255, 0.3);
     text-align: left;
     color: white;
-    background: transparent;
+    background: transparent; 
+  }
+
+  th {
+    font-weight: bold;
   }
 
   blockquote {
