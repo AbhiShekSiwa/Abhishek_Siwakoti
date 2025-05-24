@@ -289,29 +289,17 @@ show-avatar: true
     let scrollVelocity = 0;
     let isScrolling = false;
   
-    let lastScrollTime = 0;
-    let inputMode = 'auto'; // Will resolve to 'mouse' or 'trackpad'
-  
     function smoothScrollStep() {
       if (Math.abs(scrollVelocity) < 0.5) {
         isScrolling = false;
         return;
       }
       timelineWrapper.scrollLeft += scrollVelocity;
-      scrollVelocity *= 0.85;
+      scrollVelocity *= 0.85; // Smooth decay
       requestAnimationFrame(smoothScrollStep);
     }
   
     window.addEventListener('wheel', function (e) {
-      const now = performance.now();
-  
-      // Dynamically infer input type
-      const deltaAbs = Math.abs(e.deltaY);
-      if (inputMode === 'auto') {
-        inputMode = (deltaAbs < 10 || (now - lastScrollTime < 30)) ? 'trackpad' : 'mouse';
-      }
-      lastScrollTime = now;
-  
       const rect = timelineWrapper.getBoundingClientRect();
       const centerThreshold = window.innerHeight * 0.5;
   
@@ -320,39 +308,25 @@ show-avatar: true
   
       const scrollLeft = timelineWrapper.scrollLeft;
       const scrollMax = timelineWrapper.scrollWidth - timelineWrapper.clientWidth;
-  
-      const atStart = scrollLeft <= 100;
+      const atStart = scrollLeft < 100;
       const atEnd = scrollLeft >= scrollMax - 2;
   
       const isScrollingDown = e.deltaY > 0;
       const isScrollingUp = e.deltaY < 0;
   
-      if (!timelineCentered) return;
+      if (timelineCentered) {
+        // Allow user to scroll out vertically at ends
+        if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) return;
   
-      // Escape at edges
-      if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) return;
-  
-      // Determine total motion: treat both X/Y deltas as contributing to horizontal scroll
-      let motionX = e.deltaX;
-      let motionY = e.deltaY;
-  
-      // For mouse users: treat vertical scroll as horizontal
-      if (inputMode === 'mouse') {
-        motionX = e.deltaY;
-        motionY = 0;
-      }
-  
-      const combined = motionX + motionY;
-  
-      if (Math.abs(combined) > 0) {
+        // Prevent default vertical scroll and inject horizontal movement
         e.preventDefault();
-  
-        scrollVelocity += combined * 0.5;
+        scrollVelocity += e.deltaY * 0.5; // Only vertical -> horizontal
         if (!isScrolling) {
           isScrolling = true;
           requestAnimationFrame(smoothScrollStep);
         }
   
+        // Snap timeline into view only once on enter
         window.scrollTo({
           top: timelineWrapper.offsetTop,
           behavior: 'smooth'
@@ -360,15 +334,6 @@ show-avatar: true
       }
     }, { passive: false });
   </script>
-
-
-
-
-
-  
-    
-
-
 
 </body>
 </html>
