@@ -1,7 +1,7 @@
 ---
 layout: page
-title: My Email! 
-subtitle: You can send me a message!  
+title: My Email!
+subtitle: You can send me a message!
 ---
 
 <style>
@@ -11,77 +11,26 @@ subtitle: You can send me a message!
     font-family: 'Segoe UI', sans-serif;
   }
 
-  main {
-    padding: 6rem 2rem;
-    max-width: 1000px;
-    margin: auto;
-    line-height: 1.8;
-    font-size: 1.1rem;
-  }
-
-  form {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  }
-
-  label {
-    display: block;
-    margin-top: 1rem;
-    font-weight: bold;
-  }
-
-  input, textarea {
-    width: 100%;
-    padding: 0.75rem;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    border: none;
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: #dddddd;
-  }
-
-  input[type="submit"] {
-    background: #ffffff;
-    color: #2575fc;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-
-  input[type="submit"]:hover {
-    background: #f0f0f0;
-  }
-</style>
-
-<style>
   .contact-section {
     max-width: 600px;
-    margin: 2em auto;
-    padding: 2em;
-    background-color: #f9f9f9;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
   .contact-section h2 {
     text-align: center;
     font-size: 2em;
     margin-bottom: 0.25em;
+    color: #ffffff;
   }
 
   .contact-section p {
     text-align: center;
     font-size: 1em;
-    color: #666;
+    color: #dddddd;
     margin-bottom: 2em;
   }
 
@@ -94,45 +43,40 @@ subtitle: You can send me a message!
   .contact-section input,
   .contact-section textarea {
     padding: 0.75em;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 8px;
     font-size: 1em;
     font-family: inherit;
-    transition: border 0.2s ease;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
   }
 
-  .contact-section input:focus,
-  .contact-section textarea:focus {
-    border-color: #007bff;
-    outline: none;
+  .contact-section input::placeholder,
+  .contact-section textarea::placeholder {
+    color: #eeeeee;
   }
 
   .contact-section button {
     padding: 0.75em;
     font-size: 1em;
-    background-color: #007bff;
-    color: white;
+    background-color: #ffffff;
+    color: #2575fc;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-weight: bold;
   }
 
   .contact-section button:hover {
-    background-color: #0056b3;
+    background-color: #f0f0f0;
   }
 
   #form-message {
     text-align: center;
     font-size: 1em;
-    color: #28a745;
+    color: #a0ffcc;
     margin-top: 1em;
-  }
-
-  @media (max-width: 600px) {
-    .contact-section {
-      padding: 1.5em;
-    }
   }
 </style>
 
@@ -152,7 +96,7 @@ subtitle: You can send me a message!
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
   (function() {
-    emailjs.init("-PyNu_EXAs9e_mwF5"); // Your correct public key
+    emailjs.init("-PyNu_EXAs9e_mwF5"); // Replace with your public key
   })();
 
   document.getElementById('contact-form').addEventListener('submit', function(e) {
