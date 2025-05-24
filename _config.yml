@@ -20,9 +20,11 @@ author: Abhishek Siwakoti
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
+  About Me: 
+    -About Me: "aboutme"
+    -Blog: "blog"
   Projects: "portfolio"
-  Blog: "blog"
+  Contact Me: "contactme" 
 
 ################
 # --- Logo --- #
