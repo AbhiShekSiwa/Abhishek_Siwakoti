@@ -6,6 +6,63 @@ author: Abhishek Siwakoti
 permalink: /portfolio/
 ---
 
+<style>
+  body {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3, #ffb3c6);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  main {
+    padding: 6rem 2rem;
+    max-width: 1000px;
+    margin: auto;
+    line-height: 1.8;
+    font-size: 1.1rem;
+  }
+
+  .box-highlight {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+
+  h2, h3 {
+    color: #fff0f5;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+
+  th, td {
+    padding: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: left;
+    color: white;
+    background: transparent;
+  }
+
+  th {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  blockquote {
+    background: rgba(0, 0, 0, 0.15);
+    padding: 1rem 1.5rem;
+    border-left: 4px solid #ffd6e8;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+    color: #fff;
+    font-style: italic;
+  }
+</style>
+
+
 Welcome to my aerospace projects portfolio! Each section showcases a different project I’ve worked on, with interactive image galleries to show progress, results, and final implementations.
 
 ---
