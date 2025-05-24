@@ -21,8 +21,8 @@ author: Abhishek Siwakoti
 
 navbar-links:
   About Me: 
-    -About Me: "aboutme"
-    -Blog: "blog"
+    - About Me: "aboutme"
+    - Blog: "blog"
   Projects: "portfolio"
   Contact Me: "contactme" 
 
