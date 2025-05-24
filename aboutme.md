@@ -44,6 +44,7 @@ permalink: /aboutme/
     border: 1px solid rgba(255, 255, 255, 0.3);
     text-align: left;
     color: white;
+    background: transparent;
   }
 
   blockquote {
@@ -55,6 +56,7 @@ permalink: /aboutme/
     color: #f0f0f0;
     font-style: italic;
   }
+  
 </style>
 {: .box-success}
 Hey there — welcome to my digital corner of the universe. This page is where you get to learn a bit more about *who I am*, *what I care about*, and *why aerospace isn't just my major — it's my mission*.
@@ -94,7 +96,7 @@ Coming to the U.S. young, I didn’t arrive with much. But what I *did* bring wa
 
 Engineering didn’t just speak to me — it **challenged** me. And I’ve been answering back ever since.
 
-What started as helping my mom, fixing things around the house, and launching makeshift gadgets, turned into launching actual rockets in class and modeling flight paths in MATLAB. I realized that engineering isn't just about solving equations — it's about solving life, one problem at a time.
+What started as helping my mom, fixing things around the house, and launching makeshift gadgets turned into launching actual rockets in class and modeling flight paths in MATLAB. I realized that engineering isn't just about solving equations — it's about solving life, one problem at a time.
 
 I’ve built trebuchets that can launch beanbags 50 feet, CAD models that print to spec, and I’m on my way to building a life that can lift others too.
 
