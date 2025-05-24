@@ -295,7 +295,7 @@ show-avatar: true
           return;
         }
         timelineWrapper.scrollLeft += scrollVelocity;
-        scrollVelocity *= 0.95; // Decay factor
+        scrollVelocity *= 0.87; // Decay factor
         requestAnimationFrame(smoothScrollStep);
       }
     
