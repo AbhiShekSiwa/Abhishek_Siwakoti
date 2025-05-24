@@ -6,19 +6,13 @@ permalink: /aboutme/
 ---
 
 <style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    font-family: 'Segoe UI', sans-serif;
+  body {
     background: linear-gradient(135deg, #004d40, #00796b, #48a999);
     color: white;
-  }
-
-  .about-container {
+    font-family: 'Segoe UI', sans-serif;
+    padding: 4rem 2rem;
     max-width: 800px;
     margin: auto;
-    padding: 4rem 2rem;
   }
 
   .box-success {
@@ -46,7 +40,6 @@ permalink: /aboutme/
   }
 </style>
 
-<div class="about-container">
 
 Hey there — welcome to my digital corner of the universe. This page is where you get to learn a bit more about *who I am*, *what I care about*, and *why aerospace isn't just my major — it's my mission*.
 
@@ -172,5 +165,3 @@ Got a project, a question, or just want to talk rockets and ramen?
 
 {: .box-success}
 *Pro tip:* If you made it this far, we should totally be working on a mission together someday.
-
-</div>
