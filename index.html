@@ -134,10 +134,11 @@ show-avatar: true
       gap: 4rem;
       padding: 4rem;
     }
-    
     .timeline-item {
       flex: 0 0 auto;
-      width: 300px;
+      min-width: 300px;
+      max-width: 500px;
+      width: auto;
       background: rgba(255, 255, 255, 0.15);
       color: white;
       border-radius: 10px;
@@ -146,18 +147,22 @@ show-avatar: true
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(8px);
       transition: transform 0.3s ease;
+      word-wrap: break-word;
+      max-height: 400px;
+      overflow-y: auto;
     }
-    
     .timeline-item:hover {
       transform: scale(1.05);
     }
-    
-    .timeline-item {
-      flex: 0 0 auto;
-      width: 300px;
-      ...
+    .timeline-item p {
+      line-height: 1.6;
     }
-
+    @media (max-width: 500px) {
+      .timeline-item {
+        max-height: none;
+      }
+    }
+    
   </style>
 </head>
 
