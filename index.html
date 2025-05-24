@@ -285,39 +285,56 @@ show-avatar: true
   </script>
     
   <script>
-    const timelineWrapper = document.getElementById('timeline-wrapper');
-  
-    window.addEventListener('wheel', function (e) {
-      const rect = timelineWrapper.getBoundingClientRect();
-      const centerThreshold = window.innerHeight * 0.5;
-  
-      const timelineCentered =
-        rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
-  
-      const scrollLeft = timelineWrapper.scrollLeft;
-      const scrollMax = timelineWrapper.scrollWidth - timelineWrapper.clientWidth;
-  
-      const atStart = scrollLeft < 100;
-      const atEnd = scrollLeft >= scrollMax - 2;
-  
-      const isScrollingDown = e.deltaY > 0;
-      const isScrollingUp = e.deltaY < 0;
-  
-      if (timelineCentered) {
-        // Allow natural vertical scroll to exit timeline area
-        if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) return;
-  
-        // Scroll horizontally using vertical scroll input
-        e.preventDefault();
-        timelineWrapper.scrollLeft += e.deltaY;
-        
-        window.scrollTo({
-          top: timelineWrapper.offsetTop,
-          behavior: 'smooth'
-        });
+      const timelineWrapper = document.getElementById('timeline-wrapper');
+      let scrollVelocity = 0;
+      let isScrolling = false;
+    
+      function smoothScrollStep() {
+        if (Math.abs(scrollVelocity) < 0.5) {
+          isScrolling = false;
+          return;
+        }
+        timelineWrapper.scrollLeft += scrollVelocity;
+        scrollVelocity *= 0.95; // Decay factor
+        requestAnimationFrame(smoothScrollStep);
       }
-    }, { passive: false });
-  </script>
+    
+      window.addEventListener('wheel', function (e) {
+        const rect = timelineWrapper.getBoundingClientRect();
+        const centerThreshold = window.innerHeight * 0.5;
+    
+        const timelineCentered =
+          rect.top < centerThreshold && rect.bottom > window.innerHeight - centerThreshold;
+    
+        const atStart = timelineWrapper.scrollLeft <= 100;
+        const atEnd = timelineWrapper.scrollLeft >= (timelineWrapper.scrollWidth - timelineWrapper.clientWidth);
+    
+        const isScrollingDown = e.deltaY > 0;
+        const isScrollingUp = e.deltaY < 0;
+    
+        if (timelineCentered) {
+          // Allow user to scroll out vertically at the ends
+          if ((atStart && isScrollingUp) || (atEnd && isScrollingDown)) return;
+    
+          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            e.preventDefault();
+    
+            // Smooth scrolling: inject momentum
+            scrollVelocity += e.deltaY * 0.5;
+            if (!isScrolling) {
+              isScrolling = true;
+              requestAnimationFrame(smoothScrollStep);
+            }
+    
+            // Snap to timeline top only once on entry
+            window.scrollTo({
+              top: timelineWrapper.offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        }
+      }, { passive: false });
+    </script>
 
 </body>
 </html>
