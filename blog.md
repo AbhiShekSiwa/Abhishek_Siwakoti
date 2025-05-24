@@ -85,4 +85,13 @@ a.btn:hover {
   background-color: rgba(255, 255, 255, 0.3) !important;
   color: #ffffff !important;
 }
+a.post-tag {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.3em 0.75em;
+  border-radius: 999px;
+  display: inline-block;
+  margin-right: 0.4em;
+  font-size: 0.85rem;
+}
+
 </style>
