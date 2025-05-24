@@ -62,4 +62,23 @@ permalink: /blog/
     margin: 0 0.5rem;
     text-decoration: none;
   }
+  /* Lighten tags */
+a.post-tag,
+.post-meta a {
+  color: #ffd6f6 !important; /* light pink/purple tone */
+}
+
+/* Lighten the "Read More" link */
+a.btn.btn-primary {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffccff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: background 0.3s ease;
+}
+
+a.btn.btn-primary:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
 </style>
