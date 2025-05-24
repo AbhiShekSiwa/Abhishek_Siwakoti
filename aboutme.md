@@ -4,42 +4,28 @@ title: About Me
 subtitle: The Aerospace Dreamer Who Builds, Breaks, and Rebuilds
 permalink: /aboutme/
 ---
+
 <style>
   html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #004d40, #00796b, #48a999); /* Teal/green tone */
+    background: linear-gradient(135deg, #004d40, #00796b, #48a999);
     color: white;
   }
 
   .about-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    text-align: left;
-    padding: 4rem 2rem;
     max-width: 800px;
     margin: auto;
-  }
-
-  .about-container h1, h2, h3 {
-    color: #ffffff;
-  }
-
-  .about-container a {
-    color: #ffee58;
-    text-decoration: underline;
+    padding: 4rem 2rem;
   }
 
   .box-success {
     background: rgba(255, 255, 255, 0.15);
     padding: 1rem;
     border-radius: 8px;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
   }
 
   .box-warning {
@@ -47,14 +33,24 @@ permalink: /aboutme/
     padding: 1rem;
     border-left: 5px solid #ffee58;
     border-radius: 4px;
-    margin: 1rem 0;
+    margin: 2rem 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
   }
 </style>
 
 <div class="about-container">
 
-{: .box-success}
 Hey there — welcome to my digital corner of the universe. This page is where you get to learn a bit more about *who I am*, *what I care about*, and *why aerospace isn't just my major — it's my mission*.
+
+{: .box-success}
 
 ---
 
@@ -64,25 +60,24 @@ Hi! I’m **Abhishek Siwakoti**, a student of Aerospace Engineering with a passi
 
 **Quick intro snapshot**:  
 🛰️ School: University of Colorado Boulder  
-
 🚀 Focus areas: Orbital Dynamics, Aircraft Stability, Aerodynamics, and Thermodynamics  
-
 🔧 Tools I love: MATLAB, Python, Simulink, SolidWorks, Git, LaTeX
 
 🧠 I geek out about:  
-  - The Kármán line (yes, it *is* arbitrary but still cool)  
-  - Supersonic shockwaves and Prandtl–Meyer expansions  
-  - Lagrange points and how they create "gravitational parking spots"  
-  - Thrust vector control in rockets  
-  - The elegance of the Breguet range equation  
-  - Turbulence... even if no one fully understands it
+- The Kármán line (yes, it *is* arbitrary but still cool)  
+- Supersonic shockwaves and Prandtl–Meyer expansions  
+- Lagrange points and how they create "gravitational parking spots"  
+- Thrust vector control in rockets  
+- The elegance of the Breguet range equation  
+- Turbulence... even if no one fully understands it
 
 ---
 
 ## ✈️ Why Aerospace?
 
-{: .box-warning}
 Everyone’s got a spark. Mine? Watching rockets lift off and realizing *someone* built that — someone like me, one day.
+
+{: .box-warning}
 
 I fell in love with flight, space, and engineering the moment I realized that physics + creativity = aerospace.
 
@@ -95,7 +90,6 @@ What started as helping my mom, fixing things around the house, and launching ma
 
 I’ve built trebuchets that can launch beanbags 50 feet, CAD models that print to spec, and I’m on my way to building a life that can lift others too.
 
-
 Every class, every late night, every build that fails forward — it all comes back to this:  
 **Make something better than what you were handed.**
 
@@ -106,11 +100,12 @@ Every class, every late night, every build that fails forward — it all comes b
 > If it has my name on it, I want it done right — whether it’s a flight sim, a design file, or the code behind this website. I can’t promise perfection, but I can promise I’ll give it everything I’ve got.
 
 I believe in:
-  - Simplicity that scales
-  - Documentation that lives
-  - Code that doesn’t bite back
+- Simplicity that scales
+- Documentation that lives
+- Code that doesn’t bite back
 
 ---
+
 ## 📚 Fun Engineering Stats
 
 | Project | Tools Used | Coolest Outcome |
@@ -119,7 +114,6 @@ I believe in:
 | VR Roller Coaster G-Force Simulator (ASEN 2803 Lab 1) | MATLAB, G-force math, plotting | Built a coaster sim that modeled safe human acceleration |
 | Locomotive Crank Motion (ASEN 2803 Lab 2) | MATLAB, sensors, data analysis | Validated kinematics with real-world encoder + potentiometer data |
 | Rotary Arm PD Control (ASEN 2803 Lab 3) | MATLAB, Simulink, strain gauges | Tuned a PD controller and modeled 2-DOF dynamics with feedback |
-
 
 ---
 
@@ -130,15 +124,15 @@ It would be [*Everything Everywhere All at Once*](https://en.wikipedia.org/wiki/
 There’s something about embracing the mess of life while still choosing kindness and purpose that just resonates.  
 Plus, if I could bend space and time, I'd go live with raccacoonie. 
 
-
 ---
+
 ## 😻 Meet My Cat
 
 <div style="display: flex; align-items: flex-start; gap: 1.5em; flex-wrap: wrap;">
   <div style="text-align: center;">
     <img id="garmadon-img" src="/assets/img/MeanGarmadon.jpeg" alt="Garmadon Buny Kaliflower" 
          style="max-width: 220px; height: auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.15); cursor: pointer;" />
-    <p style="font-size: 0.9em; margin-top: 0.5em; color: #666;">(Psst… try clicking her a few times 👀)</p>
+    <p style="font-size: 0.9em; margin-top: 0.5em; color: #ddd;">(Psst… try clicking her a few times 👀)</p>
   </div>
 
   <div style="flex: 1; min-width: 250px;">
@@ -169,15 +163,14 @@ Plus, if I could bend space and time, I'd go live with raccacoonie.
 
 ## 📬 Let’s Connect
 
-Got a project, a question, or just want to talk rockets and ramen?
-- 🧑‍💻 [GitHub](https://github.com/{{ your username }})
-- 💼 [LinkedIn](https://linkedin.com/in/{{ your handle }})
+Got a project, a question, or just want to talk rockets and ramen?  
+- 🧑‍💻 [GitHub](https://github.com/your-username)  
+- 💼 [LinkedIn](https://linkedin.com/in/your-handle)  
 - 📩 [Contact Me](/contactme/) — I actually read my messages 🙂
-
 
 ---
 
-{: .box-note}
+{: .box-success}
 *Pro tip:* If you made it this far, we should totally be working on a mission together someday.
 
 </div>
