@@ -31,26 +31,6 @@ permalink: /aboutme/
     border-radius: 4px;
     margin: 2rem 0;
   }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    background: none;
-  }
-
-  th, td {
-    padding: 0.85rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    text-align: left;
-    color: white;
-    background: transparent; 
-  }
-
-  th {
-    font-weight: bold;
-  }
-
   blockquote {
     background: rgba(0, 0, 0, 0.2);
     padding: 1rem 1.5rem;
@@ -119,18 +99,6 @@ I believe in:
 - Code that doesn’t bite back
 
 ---
-
-## 📚 Fun Engineering Stats
-
-| Project | Tools Used | Coolest Outcome |
-|--------|------------|------------------|
-| Boost-Glide Vehicle Modeling (ASEN 2804 Lab 1) | MATLAB, SolidWorks, PDF.js | Modeled full launch-to-glide flight and made an interactive CAD animation |
-| VR Roller Coaster G-Force Simulator (ASEN 2803 Lab 1) | MATLAB, G-force math, plotting | Built a coaster sim that modeled safe human acceleration |
-| Locomotive Crank Motion (ASEN 2803 Lab 2) | MATLAB, sensors, data analysis | Validated kinematics with real-world encoder + potentiometer data |
-| Rotary Arm PD Control (ASEN 2803 Lab 3) | MATLAB, Simulink, strain gauges | Tuned a PD controller and modeled 2-DOF dynamics with feedback |
-
----
-
 ## 🎬 If My Life Were a Movie...
 
 It would be [*Everything Everywhere All at Once*](https://en.wikipedia.org/wiki/Everything_Everywhere_All_at_Once): chaotic, beautiful, emotional, and oddly philosophical — with googly eyes, multiverse jumps, and yes... **Raccacooniee**. 🦝👨‍🍳
