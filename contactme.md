@@ -6,7 +6,7 @@ subtitle: You can send me a message!
 
 <style>
   body {
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background: linear-gradient(135deg, #7F00FF, #3f51b5);
     color: white;
     font-family: 'Segoe UI', sans-serif;
   }
@@ -60,7 +60,7 @@ subtitle: You can send me a message!
     padding: 0.75em;
     font-size: 1em;
     background-color: #ffffff;
-    color: #2575fc;
+    color: #7F00FF;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -79,6 +79,7 @@ subtitle: You can send me a message!
     margin-top: 1em;
   }
 </style>
+
 
 <section id="contact" class="contact-section">
   <h2>Contact Me</h2>
