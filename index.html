@@ -320,7 +320,7 @@ show-avatar: true
             e.preventDefault();
     
             // Smooth scrolling: inject momentum
-            scrollVelocity += e.deltaY * 0.3;
+            scrollVelocity += e.deltaY * 0.5;
             if (!isScrolling) {
               isScrolling = true;
               requestAnimationFrame(smoothScrollStep);
