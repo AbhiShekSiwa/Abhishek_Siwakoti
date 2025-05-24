@@ -10,6 +10,9 @@ permalink: /aboutme/
     background: linear-gradient(135deg, #004d40, #00796b, #48a999);
     color: white;
     font-family: 'Segoe UI', sans-serif;
+  }
+
+  main {
     padding: 6rem 2rem;
     max-width: 1000px;
     margin: auto;
@@ -31,6 +34,7 @@ permalink: /aboutme/
     border-radius: 4px;
     margin: 2rem 0;
   }
+
   blockquote {
     background: rgba(0, 0, 0, 0.2);
     padding: 1rem 1.5rem;
@@ -40,8 +44,8 @@ permalink: /aboutme/
     color: #f0f0f0;
     font-style: italic;
   }
-  
 </style>
+
 {: .box-success}
 Hey there — welcome to my digital corner of the universe. This page is where you get to learn a bit more about *who I am*, *what I care about*, and *why aerospace isn't just my major — it's my mission*.
 
